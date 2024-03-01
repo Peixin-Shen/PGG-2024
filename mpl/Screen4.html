@@ -1,0 +1,191 @@
+
+{{ block title }}
+    報酬頁面
+{{ endblock }}
+{{ block content }}
+<style>
+.debug-info {
+    display: none;
+}
+.important{
+    font-weight: bolder;
+}
+
+.line{
+        border-bottom: black 1px solid;
+        margin: 1.5rem 0rem;
+    }
+
+td{
+    border: black 1px solid;
+    text-align: center;
+    padding: 1rem 1rem;
+}
+    .container{
+		max-width: {{Constants.width}};
+	}
+
+	p{
+		line-height: {{Constants.height}};
+	}
+
+    .check{
+        display: none;
+    }
+
+    .noncheck{
+        display: none;
+    }
+</style>
+
+
+    <div class="check">
+        <p>
+		{{if player.pass_check == 1}}您已通過驗證{{else}}您並未通過驗證{{endif}}。<br>
+		您的實驗報酬一共為 ${{total_payoff}}元<br>
+    	實驗結束，謝謝您的參與！
+	</p>
+
+    <div class="line"></div>
+
+    <div>
+        <ul>
+            <li>您在合作案中的ID為：{{pgg_id}}</li>
+            <li>請點選右方連結，以填寫實驗報酬收據：<a href="https://tassel.syd1.qualtrics.com/jfe/form/SV_3L8ic4lpzX8Mjki" target="_blank">https://tassel.syd1.qualtrics.com/jfe/form/SV_3L8ic4lpzX8Mjki</a></li>
+            <li>
+                完成收據前，請勿關閉此頁面。
+            </li>
+        </ul>
+        <p>
+            註：<br>
+            <ol>
+                <li>
+                    負責匯款的會計人員對於實驗設計與實驗結果毫不知情，僅能取得您填寫的個人資訊與您的報酬金額，代表您的一切決策皆是保密的。
+                </li>
+                <li>
+                    您在收據頁面填寫的ID，僅用於確認報酬金額，並不會與您的個人資訊連結。
+                </li>
+
+            </ol>
+        </p>
+   </div>
+
+	<table border="1" style="margin: 1rem 0rem; width: 640px;">
+        <tr>
+            <td style="width: 40%;">參與費</td>
+            <td>$50</td>
+        </tr>
+        <tr>
+            <td>第一個<br>決策項目的報酬</td>
+            <td>{{if player.pass_check == 1}}$200{{else}}$0{{endif}}</td>
+        </tr>
+        <tr>
+            <td>第二個<br>決策項目的報酬</td>
+            <td>${{pgg_payoff}}</td>
+        </tr>
+        <tr class="pgg">
+            <td>隱私授權的報酬</td>
+            <td>${{player.mpl_payoff}}</td>
+        </tr>
+        <tr style="background-color: cornsilk;">
+            <td>總報酬</td>
+            <td>${{total_payoff}}</td>
+        </tr>
+
+    </table>
+    </div>
+
+    <div class="noncheck">
+        <p class="noncheck">
+        電腦未抽中驗證您的資料。<br>
+        您的實驗報酬一共為 ${{total_payoff}}元<br>
+        實驗結束，謝謝您的參與！
+    </p>
+    <div class="line noncheck"></div>
+
+   <div class="noncheck">
+        <ul>
+            <li>您在合作案中的ID為：{{pgg_id}}</li>
+            <li>請點選右方連結，以填寫實驗報酬收據：<a href="https://tassel.syd1.qualtrics.com/jfe/form/SV_3L8ic4lpzX8Mjki" target="_blank">https://tassel.syd1.qualtrics.com/jfe/form/SV_3L8ic4lpzX8Mjki</a></li>
+            <li>
+                完成收據前，請勿關閉此頁面。
+            </li>
+        </ul>
+        <p>
+            註：<br>
+            <ol>
+                <li>
+                    負責匯款的會計人員對於實驗設計與實驗結果毫不知情，僅能取得您填寫的個人資訊與您的報酬金額，代表您的一切決策皆是保密的。
+                </li>
+                <li>
+                    您在收據頁面填寫的ID，僅用於確認報酬金額，並不會與您的個人資訊連結。
+                </li>
+
+            </ol>
+        </p>
+   </div>
+
+    <table border="1" style="margin: 1rem 0rem; width: 640px;" class="noncheck">
+        <tr>
+            <td style="width: 40%;">參與費</td>
+            <td>$50</td>
+        </tr>
+        <tr>
+            <td>第一個<br>決策項目的報酬</td>
+            <td>$100</td>
+        </tr>
+        <tr>
+            <td>第二個<br>決策項目的報酬</td>
+            <td>${{pgg_payoff}}</td>
+        </tr>
+        <tr class="pgg">
+            <td>隱私授權的報酬</td>
+            <td>${{player.mpl_payoff}}</td>
+        </tr>
+        <tr style="background-color: cornsilk;">
+            <td>總報酬</td>
+            <td>${{total_payoff}}</td>
+        </tr>
+
+    </table>
+    </div>
+
+
+<script>
+    if ("{{player.participant.pgg_role}}" == "A"){      
+        if ({{player.mpl_agree}} == 1){
+            $('.agree').show()
+        }else{
+            $('.disagree').show()
+        }
+    } else{
+        $('.pgg').hide()
+    }
+
+</script>
+
+<script>
+    if ({{player.check}} == 1){
+        $('.check').show()
+    }else{
+        $('.noncheck').show()
+    };
+</script>
+
+<script>
+	setTimeout(function(){document.querySelector('.otree-btn-next').className+= ' twinkle'}, 60000);
+</script>
+
+<style type="text/css">
+        .twinkle{
+            color: #fff;
+            border: #0d6efd;
+            animation: twinkle 1s alternate infinite;
+        }
+        @keyframes twinkle{
+			from{background: #0d6efd;}
+            to{background: #0d6dfd4f;}
+        }	
+</style>
+{{ endblock }}
+

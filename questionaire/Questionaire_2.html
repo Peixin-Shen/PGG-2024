@@ -1,0 +1,440 @@
+
+{{ block title }}
+    實驗問卷
+{{ endblock }}
+{{ block content }}
+<style>
+.debug-info {
+  display: none;
+}
+.now{
+    border: black 2px solid;
+    padding: 20px;
+    width: 500px;
+    margin-bottom: 20px;
+}
+
+.now-mine{
+    display: flex;
+    justify-content: space-between;
+}
+
+.bar{
+    background-color: blue;
+    height: 20px;
+}
+
+.money{
+    display: flex;
+    width: 500px;
+}
+
+.money-text{
+    width: 100px;
+}
+
+.money-value{
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+}
+
+.slider{
+    width: 500px;
+}
+
+
+.line{
+    border-bottom: black 1px solid;
+    margin: 25px 0px;
+}
+
+.hidden-area{
+    display: none;
+}
+
+    .container{
+		max-width: {{Constants.width}};
+	}
+
+	p{
+		line-height: {{Constants.height}};
+	}
+</style>
+
+    <p>
+        以下共有六個情境，在每個情境中，您可以透過移動滑桿來改變您和另一個人的報酬。<br>
+        在每個情境中，我方報酬與對方報酬的換算方式皆不同。<br>
+
+        答案皆為個人偏好，沒有正確與否。此為情境式問卷，您的答案不會影響您和其他人於實驗中的真實報酬。
+    </p>
+    <div class="line"></div>
+
+
+    <h5>1.</h5>
+    <div class="q1">
+        <div class="now">
+            <h4>目前報酬分配</h4>
+            <div class="now-mine">
+            <p>我方報酬：<em id='mine-1'></em></p>
+            <div class="bar" id="mine-bar-1"></div>
+            </div>
+            <div class="now-mine">
+            <p>對方報酬：<em id='other-1'></em></p>
+            <div class="bar" id="other-bar-1"></div>
+            </div>
+            
+        </div>
+
+        <div class="slider">
+            <div class="money">
+                <p class="money-text">我方報酬：</p>
+                <div class="money-value">
+                <p>{{Constants.svo_mine_l_1}}</p><p>{{Constants.svo_mine_r_1}}</p>
+            </div>
+        </div>
+
+        <div class="money">
+            <p class="money-text"></p>
+            <input type="range" min="15" max="85" step="1" value="50" class="money-value" id="range-1" name="range-1">
+        </div>
+
+        <div class="money">
+            <p class="money-text">對方報酬：</p>
+            <div class="money-value">
+            <p>{{Constants.svo_other_l_1}}</p><p>{{Constants.svo_other_r_1}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="line"></div>
+    </div>
+
+    <h5>2.</h5>
+    <div class="q2">
+        <div class="now">
+            <h4>目前報酬分配</h4>
+            <div class="now-mine">
+            <p>我方報酬：<em id='mine-2'></em></p>
+            <div class="bar" id="mine-bar-2"></div>
+            </div>
+            <div class="now-mine">
+            <p>對方報酬：<em id='other-2'></em></p>
+            <div class="bar" id="other-bar-2"></div>
+            </div>
+            
+        </div>
+
+        <div class="slider">
+            <div class="money">
+                <p class="money-text">我方報酬：</p>
+                <div class="money-value">
+                <p>{{Constants.svo_mine_l_2}}</p><p>{{Constants.svo_mine_r_2}}</p>
+            </div>
+        </div>
+
+        <div class="money">
+            <p class="money-text"></p>
+            <input type="range" min="0" max="105" step="3" value="33" class="money-value" id="range-2" name="range-2">
+        </div>
+
+        <div class="money">
+            <p class="money-text">對方報酬：</p>
+            <div class="money-value">
+            <p>{{Constants.svo_other_l_2}}</p><p>{{Constants.svo_other_r_2}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="line"></div>
+    </div>
+
+    <h5>3.</h5>
+    <div class="q3">
+        <div class="now">
+            <h4>目前報酬分配</h4>
+            <div class="now-mine">
+            <p>我方報酬：<em id='mine-3'></em></p>
+            <div class="bar" id="mine-bar-3"></div>
+            </div>
+            <div class="now-mine">
+            <p>對方報酬：<em id='other-3'></em></p>
+            <div class="bar" id="other-bar-3"></div>
+            </div>
+            
+        </div>
+
+        <div class="slider">
+            <div class="money">
+                <p class="money-text">我方報酬：</p>
+                <div class="money-value">
+                <p>{{Constants.svo_mine_l_3}}</p><p>{{Constants.svo_mine_r_3}}</p>
+            </div>
+        </div>
+
+        <div class="money">
+            <p class="money-text"></p>
+            <input type="range" min="0" max="105" step="3" value="75" class="money-value" id="range-3" name="range-3">
+        </div>
+
+        <div class="money">
+            <p class="money-text">對方報酬：</p>
+            <div class="money-value">
+            <p>{{Constants.svo_other_l_3}}</p><p>{{Constants.svo_other_r_3}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="line"></div>
+    </div>
+
+    <h5>4.</h5>
+    <div class="q4">
+        <div class="now">
+            <h4>目前報酬分配</h4>
+            <div class="now-mine">
+            <p>我方報酬：<em id='mine-4'></em></p>
+            <div class="bar" id="mine-bar-4"></div>
+            </div>
+            <div class="now-mine">
+            <p>對方報酬：<em id='other-4'></em></p>
+            <div class="bar" id="other-bar-4"></div>
+            </div>
+            
+        </div>
+
+        <div class="slider">
+            <div class="money">
+                <p class="money-text">我方報酬：</p>
+                <div class="money-value">
+                <p>{{Constants.svo_mine_l_4}}</p><p>{{Constants.svo_mine_r_4}}</p>
+            </div>
+        </div>
+
+        <div class="money">
+            <p class="money-text"></p>
+            <input type="range" min="0" max="595" step="7" value="175" class="money-value" id="range-4" name="range-4">
+        </div>
+
+        <div class="money">
+            <p class="money-text">對方報酬：</p>
+            <div class="money-value">
+            <p>{{Constants.svo_other_l_4}}</p><p>{{Constants.svo_other_r_4}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="line"></div>
+    </div>
+
+    <h5>5.</h5>
+    <div class="q5">
+        <div class="now">
+            <h4>目前報酬分配</h4>
+            <div class="now-mine">
+            <p>我方報酬：<em id='mine-5'></em></p>
+            <div class="bar" id="mine-bar-5"></div>
+            </div>
+            <div class="now-mine">
+            <p>對方報酬：<em id='other-5'></em></p>
+            <div class="bar" id="other-bar-5"></div>
+            </div>
+            
+        </div>
+
+        <div class="slider">
+            <div class="money">
+                <p class="money-text">我方報酬：</p>
+                <div class="money-value">
+                <p>{{Constants.svo_mine_l_5}}</p><p>{{Constants.svo_mine_r_5}}</p>
+            </div>
+        </div>
+
+        <div class="money">
+            <p class="money-text"></p>
+            <input type="range" min="0" max="50" step="1" value="30" class="money-value" id="range-5" name="range-5">
+        </div>
+
+        <div class="money">
+            <p class="money-text">對方報酬：</p>
+            <div class="money-value">
+            <p>{{Constants.svo_other_l_5}}</p><p>{{Constants.svo_other_r_5}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="line"></div>
+    </div>
+
+    <h5>6.</h5>
+    <div class="q6">
+        <div class="now">
+            <h4>目前報酬分配</h4>
+            <div class="now-mine">
+            <p>我方報酬：<em id='mine-6'></em></p>
+            <div class="bar" id="mine-bar-6"></div>
+            </div>
+            <div class="now-mine">
+            <p>對方報酬：<em id='other-6'></em></p>
+            <div class="bar" id="other-bar-6"></div>
+            </div>
+            
+        </div>
+
+        <div class="slider">
+            <div class="money">
+                <p class="money-text">我方報酬：</p>
+                <div class="money-value">
+                <p>{{Constants.svo_mine_l_6}}</p><p>{{Constants.svo_mine_r_6}}</p>
+            </div>
+        </div>
+
+        <div class="money">
+            <p class="money-text"></p>
+            <input type="range" min="0" max="105" step="3" value="70" class="money-value" id="range-6" name="range-6">
+        </div>
+
+        <div class="money">
+            <p class="money-text">對方報酬：</p>
+            <div class="money-value">
+            <p>{{Constants.svo_other_l_6}}</p><p>{{Constants.svo_other_r_6}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="line"></div>
+    </div>
+
+    <div class="hidden-area">
+        {{ formfields }}
+    </div>
+    填寫完畢後，請點擊「下一頁」繼續本實驗。<br><br>
+	<button class="otree-btn-next btn btn-primary">下一頁</button>
+
+<script>
+setInterval(
+    function processFormData() {
+        var nameElement = document.getElementById("range-1");
+        var mine = 85;
+        var other = 100 - nameElement.value;
+        document.getElementById('mine-1').textContent = mine;
+        document.getElementById('other-1').textContent = other;
+
+        document.getElementById('mine-bar-1').style.width = 2*mine + 'px';
+        document.getElementById('other-bar-1').style.width = 2*other + 'px';
+
+        $('#id_svo_mine_1').val(mine)
+        $('#id_svo_other_1').val(other)
+
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.getElementById("range-2");
+        var mine = 85 + Math.round(nameElement.value/7);
+        var other = 15 + Math.round(nameElement.value/3);
+        document.getElementById('mine-2').textContent = mine;
+        document.getElementById('other-2').textContent = other;
+
+        document.getElementById('mine-bar-2').style.width = 2*mine + 'px';
+        document.getElementById('other-bar-2').style.width = 2*other + 'px';
+
+        $('#id_svo_mine_2').val(mine)
+        $('#id_svo_other_2').val(other)
+
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.getElementById("range-3");
+        var mine = 50 + Math.round(nameElement.value/3);
+        var other = 100 - Math.round(nameElement.value/7);
+        document.getElementById('mine-3').textContent = mine;
+        document.getElementById('other-3').textContent = other;
+
+        document.getElementById('mine-bar-3').style.width = 2*mine + 'px';
+        document.getElementById('other-bar-3').style.width = 2*other + 'px';
+
+        $('#id_svo_mine_3').val(mine)
+        $('#id_svo_other_3').val(other)
+
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.getElementById("range-4");
+        var mine = 50 + Math.round(nameElement.value/17);
+        var other = 100 - Math.round(nameElement.value/7);
+        document.getElementById('mine-4').textContent = mine;
+        document.getElementById('other-4').textContent = other;
+
+        document.getElementById('mine-bar-4').style.width = 2*mine + 'px';
+        document.getElementById('other-bar-4').style.width = 2*other + 'px';
+
+        $('#id_svo_mine_4').val(mine)
+        $('#id_svo_other_4').val(other)
+
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.getElementById("range-5");
+        var mine = 100 - Math.round(nameElement.value);
+        var other = 50 + Math.round(nameElement.value);
+        document.getElementById('mine-5').textContent = mine;
+        document.getElementById('other-5').textContent = other;
+
+        document.getElementById('mine-bar-5').style.width = 2*mine + 'px';
+        document.getElementById('other-bar-5').style.width = 2*other + 'px';
+
+        $('#id_svo_mine_5').val(mine)
+        $('#id_svo_other_5').val(other)
+
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.getElementById("range-6");
+        var mine = 100 - Math.round(nameElement.value/7);
+        var other = 50 + Math.round(nameElement.value/3);
+        document.getElementById('mine-6').textContent = mine;
+        document.getElementById('other-6').textContent = other;
+
+        document.getElementById('mine-bar-6').style.width = 2*mine + 'px';
+        document.getElementById('other-bar-6').style.width = 2*other + 'px';
+
+        $('#id_svo_mine_6').val(mine)
+        $('#id_svo_other_6').val(other)
+
+    },
+    0.1*1000
+)
+
+</script>
+
+<script>
+$(document).bind("contextmenu copy selectstart", function(){
+    return false;
+});
+</script>
+
+<script>
+	setTimeout(function(){document.querySelector('.otree-btn-next').className+= ' twinkle'}, 60000);
+</script>
+
+<style type="text/css">
+        .twinkle{
+            color: #fff;
+            border: #0d6efd;
+            animation: twinkle 1s alternate infinite;
+        }
+        @keyframes twinkle{
+			from{background: #0d6efd;}
+            to{background: #0d6dfd4f;}
+        }	
+</style>
+{{ endblock }}

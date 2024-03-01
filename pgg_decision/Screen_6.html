@@ -1,0 +1,210 @@
+{{ block title }}
+第二階段：合作案
+{{ endblock }}
+
+{{ block content }}
+<style>
+
+    .alert_text {
+        display: none;
+        color: red;
+    }
+
+    .alert_text_5mins {
+        display: none;
+        color: red;
+    }
+
+    #timer {
+        color: #664d03;
+        background-color: #fff3cd;
+        border-color: #ffecb5;
+
+        position: relative;
+        padding: 1rem 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: .25rem;
+    }
+
+    .container {
+
+    max-width: {
+
+    {
+        Constants . width
+    }
+    }
+    ;
+    }
+
+    p {
+
+    line-height: {
+
+    {
+        Constants . height
+    }
+    }
+    ;
+    }
+
+    .instruction {
+        background-color: rgba(0, 0, 0, 0.05);
+        position: relative;
+        padding: 1rem 1rem;
+        margin: 1rem 0rem;
+        border: 1px solid transparent;
+        border-radius: .25rem;
+    }
+
+    .debug-info {
+        display: none;
+    }
+
+    .otree-timer {
+        display: none;
+    }
+</style>
+
+<div class="alert_text_5mins" style="margin: 1rem 0rem 0rem 0rem;">
+    提醒您，若五分鐘內未輸入任何數值，系統將結束此階段實驗。
+</div>
+
+<h4 style="margin: 1rem 0rem;">
+    {{ Constants.num_rounds }} 回合合作案中的第 {{ player.round_number }} 回
+</h4>
+
+<p>
+    {{ if player.id_treatment == 'id_user' }}
+    您為自己取的 ID：{{ pgg_id }}
+    {{ else }}
+    您被系統分配的 ID：{{ pgg_id }}
+    {{ endif }}
+</p>
+
+<div class="timer" id='timer'>
+    剩餘完成時間：
+    <span style="font-weight: bold">
+			<span id="time_left">  </span>
+		</span>
+</div>
+
+<p style="margin: 0">
+    您要為此合作案貢獻多少{{ if player.contri_treatment == 'money' }}法幣{{ elif player.contri_treatment == 'own_info'}}資料{{ else
+    }}資料{{ endif }}（從 0 到 {{ Constants.endowment }}）？
+
+</p>
+
+<div class="alert_text" style="margin: 1rem 0rem 0rem 0rem;">
+    請您儘速作答！
+</div>
+
+{{ formfield 'contribution' }}
+<input type="hidden" name="decision_duration" id="decision_duration"/>
+
+
+<button class="otree-btn-next btn btn-primary">下一頁</button>
+
+
+<div class="instruction">
+    <p>
+        每回合，您的 {{ Constants.players_per_group }} 人小組會共同執行一個合作案。<br>
+        每回合合作案開始時，每位成員將擁有 {{ Constants.endowment }} {{ if player.contri_treatment == 'money' }}個法幣。每個法幣{{ elif
+        player.contri_treatment == 'own_info'}}項來自第一階段自己提供的資料。每項資料{{ else }}項來自第一階段他人提供的資料。每項資料{{ endif }}
+        的價值為 1 元新台幣。
+    </p>
+
+    <p>
+        每回合，每位成員將自由決定自己要為合作案貢獻多少{{ if player.contri_treatment == 'money' }}法幣。{{ elif player.contri_treatment ==
+        'own_info'}}資料。{{ else }}資料。{{ endif }}
+        <br>
+        貢獻量可以是 0 到 {{ Constants.endowment }} 之間的任何整數。假設您該回合選擇的貢獻量為 y，電腦會隨機自您擁有的 {{ Constants.endowment }} {{ if
+        player.contri_treatment == 'money' }}個法幣中{{ elif player.contri_treatment == 'own_info'}}項資料中{{ else }}項資料中{{
+        endif }}，隨機抽取 y {{ if player.contri_treatment == 'money' }}個{{ elif player.contri_treatment == 'own_info'}}項{{
+        else }}項{{ endif }}捐給小組。
+        <br>
+        {{ if player.contri_treatment == 'money' }}每個法幣{{ elif player.contri_treatment == 'own_info'}}每項資料{{ else
+        }}每項資料{{ endif }}被抽中的機會相同。
+    </p>
+
+    <p>
+        所有組員的貢獻量相加為小組總量。每回合合作案的總收益為小組總量乘以 {{ Constants.multiplier }} 倍，由 {{ Constants.players_per_group }}
+        位組員平分，作為您分得的合作案收益。<br>
+        您每回合的報酬等於您分得的合作案收益，加上 {{ Constants.endowment }} {{ if player.contri_treatment == 'money' }}個法幣{{ elif
+        player.contri_treatment == 'own_info'}}項資料{{ else }}項資料{{ endif }} 中您未貢獻的量。每回合結束時，畫面將顯示該回合您的貢獻量，小組總量，您保留的{{ if
+        player.contri_treatment == 'money' }}法幣{{ elif player.contri_treatment == 'own_info'}}資料{{ else }}資料{{ endif
+        }}產生的報酬，您分得的合作案收益，以及您該回合的報酬。
+    </p>
+
+    <p>
+        此決策項目的報酬是累積的，您第二個決策項目的報酬為您 {{ Constants.num_rounds }} 回合的報酬加總。
+    </p>
+</div>
+<script>
+
+    var start_time = Date.now()
+
+    setInterval(
+        function () {
+            var duration = (Date.now() - start_time) / 1000;
+            document.getElementById('decision_duration').value = duration.toFixed(1);
+
+            var time_left = js_vars.timeout_seconds - duration.toFixed(0);
+            document.getElementById('time_left').textContent = "0:"
+            if (0 <= time_left & time_left >= 10) {
+                document.getElementById('time_left').textContent = "0:"
+                document.getElementById('time_left').textContent += time_left;
+            } else if (0 <= time_left & time_left < 10) {
+                document.getElementById('time_left').textContent = "0:0"
+                document.getElementById('time_left').textContent += time_left;
+            } else {
+                document.getElementById('time_left').textContent = "0:00"
+            }
+
+
+            if ((js_vars.timeout_seconds_5mins_left - duration) < 0) {
+                $('.alert_text_5mins').show();
+                $('.otree-timer').show();
+                $('.alert_text').hide();
+                $('.timer').hide();
+            } else if ((js_vars.timeout_seconds - duration) <= js_vars.remind_seconds) {
+                $('.alert_text').show();
+            }
+
+        },
+        0.1 * 100
+    )
+</script>
+
+<script>
+    $(document).bind("contextmenu copy selectstart", function () {
+        return false;
+    });
+</script>
+
+<script>
+    setTimeout(function () {
+        document.querySelector('.otree-btn-next').className += ' twinkle'
+    }, 60000);
+</script>
+
+<style type="text/css">
+    .twinkle {
+        color: #fff;
+        border: #0d6efd;
+        animation: twinkle 1s alternate infinite;
+    }
+
+    @keyframes twinkle {
+        from {
+            background: #0d6efd;
+        }
+        to {
+            background: #0d6dfd4f;
+        }
+    }
+</style>
+{{ endblock }}
+
+

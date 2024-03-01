@@ -1,0 +1,144 @@
+
+{{ block title }}
+	第二階段：合作案
+{{ endblock }}
+{{ block content }}
+<style>
+	.container{
+		max-width: {{Constants.width}};
+	}
+
+	p{
+		line-height: {{Constants.height}};
+	}
+
+	table{
+		width: 40%;
+		margin: 1rem 0;
+	}
+
+	td{
+		border: black 1px solid;
+		padding: 0.5rem 0.5rem;
+	}
+
+	.number{
+		text-align: right;
+	}
+
+	.id-1{
+		display: none;
+	}
+	.id-2{
+		display: none;
+	}
+	.id-3{
+		display: none;
+	}
+	.id-4{
+		display: none;
+	}
+    .debug-info {
+        display: none;
+    }
+	/*.otree-timer {*/
+    /*display: none;*/
+	/*}*/
+</style>
+
+	<h4 style="margin: 1rem 0rem;">
+		第 {{ player.round_number }} 回合的報酬
+	</h4>
+
+	<p>
+		{{ if player.id_treatment == 'id_user' }}
+			您為自己取的 ID：{{ pgg_id }}
+		{{ else }}
+			您被系統分配的 ID：{{ pgg_id }}
+		{{ endif }}
+	</p>
+
+	<table>
+		<tr>
+			<td>{{player.id_1}} 的貢獻量<span class="id-1">（您）</span></td>
+			<td class="number">{{player.contribution_1}}</td>
+		</tr>
+		<tr>
+			<td>{{player.id_2}} 的貢獻量<span class="id-2">（您）</span></td>
+			<td class="number">{{player.contribution_2}}</td>
+		</tr>
+		<tr>
+			<td>{{player.id_3}} 的貢獻量<span class="id-3">（您）</span></td>
+			<td class="number">{{player.contribution_3}}</td>
+		</tr>
+		<tr>
+			<td>{{player.id_4}} 的貢獻量<span class="id-4">（您）</span></td>
+			<td class="number">{{player.contribution_4}}</td>
+		</tr>
+		<tr style="background-color: cornsilk;">
+			<td>小組總量</td>
+			<td class="number">{{ group.total_contribution }}</td>
+		</tr>
+		<tr>
+			<td style="border: 0;"></td>
+		</tr>
+		<tr>
+			<td>
+				{{ if player.contri_treatment == 'money' }}
+					您保留的法幣產生的報酬
+				{{ elif player.contri_treatment == 'own_info'}}
+					您保留的資料產生的報酬
+				{{ else }}
+					您保留的資料產生的報酬
+				{{ endif }}
+				
+			</td>
+			<td class="number">${{ player_preserve }}</td>
+		</tr>
+		<tr>
+			<td>您分得的合作案收益</td>
+			<td class="number">{{ group.individual_share }}</td>
+		</tr>
+		<tr style="background-color: cornsilk;">
+			<td>您此回合的報酬</td>
+			<td class="number">{{ player.payoff }}</td>
+		</tr>
+	</table>
+	
+	閱讀完畢後，請點擊「下一頁」繼續本實驗。<br><br>
+	<button class="otree-btn-next btn btn-primary">下一頁</button>
+
+<script>
+	if ('{{player.id_1}}' == '{{ pgg_id }}'){
+		$('.id-1').show()
+	}else if ('{{player.id_2}}' == '{{ pgg_id }}'){
+		$('.id-2').show()
+	}else if ('{{player.id_3}}' == '{{ pgg_id }}'){
+		$('.id-3').show()
+	}else if ('{{player.id_4}}' == '{{ pgg_id }}'){
+		$('.id-4').show()
+	}  
+</script>
+<script>
+$(document).bind("contextmenu copy selectstart", function(){
+    return false;
+});
+</script>
+
+<script>
+	setTimeout(function(){document.querySelector('.otree-btn-next').className+= ' twinkle'}, 60000);
+</script>
+
+<style type="text/css">
+        .twinkle{
+            color: #fff;
+            border: #0d6efd;
+            animation: twinkle 1s alternate infinite;
+        }
+        @keyframes twinkle{
+			from{background: #0d6efd;}
+            to{background: #0d6dfd4f;}
+        }	
+</style>
+{{ endblock }}
+

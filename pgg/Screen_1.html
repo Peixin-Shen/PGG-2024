@@ -1,0 +1,185 @@
+
+{{ block title }}
+	第一個決策項目
+{{ endblock }}
+
+{{ block content }}
+
+<style>
+	.notshow {
+		margin: 0.5rem;
+		line-height: 2rem;
+	}
+
+	.notshow:hover {
+		cursor: pointer;
+		background-color: #82d8d2;
+		transition-duration: 0.15s;
+	}
+
+	.notshow > .fill {
+		display: none;
+	}
+
+	.show {
+		background-color: #82d8d2;
+		margin: 0.5rem;
+		line-height: 2rem;
+		transition-duration: 0.15s;
+	}
+
+	.show > .fill {
+		display: block;
+		padding: 0.5rem 0rem;
+		background-color: white;
+	}
+
+	.show:hover {
+		cursor: pointer;
+	}
+
+	.fill > p{
+		color: #664d03;
+		background-color: #fff3cd;
+		border-color: #ffecb5;
+		position: relative;
+		padding: 1rem 1rem;
+		margin: 0.5rem 0rem;
+		border: 1px solid transparent;
+		border-radius: .25rem;
+	}
+
+	.line{
+    border-bottom: black 1px solid;
+    margin: 25px 0px;
+	}
+
+	.bold{
+		font-weight: bolder;
+	}
+
+	.container{
+		max-width: {{Constants.width}};
+	}
+
+	p{
+		line-height: {{Constants.height}};
+	}
+
+	a{
+		text-decoration: none;
+	}
+	.debug-info {
+        display: none;
+    }
+
+
+
+</style>
+
+	<p>
+		為確保您對第一個決策項目的任務及報酬理解正確，請仔細閱讀此實驗說明。<br>
+		下一頁將有一理解測驗，正確回答後您可進行第一個決策項目。
+	</p>
+	
+	<div class="line"></div>
+
+	<p>
+		此決策項目中有兩種角色，「甲」與「乙」。<span class="bold">每場實驗的受試者可能為「甲」，也可能為「乙」。</span> <br>兩種角色的任務如下。
+	</p>
+
+	<ul>
+		<li style="margin: 1rem 0rem;">
+		<span class="bold">「甲」</span>的任務是選填以下 {{ Constants.num_quest }} 項中的 {{ Constants.num_quest_need }} 項資料。完成後，「甲」可自第一個決策項目獲得 {{ Constants.a_role_payoff }} 元。選填的答案將以匿名的方式存取，每個問題的驗證方式將於點擊該問題時顯示在問題的下方，「甲」須將答案填寫在問題後方的空格。<br>
+		在這場實驗的最後，電腦會自 {{ Constants.a_role_val_num }} 名「甲」中隨機抽取一名驗證所有答案。若答案與驗證方式查詢到的一致，被驗證的「甲」將額外獲得 {{Constants.a_role_bonus}} 元。若任何一題驗證時發現錯誤，被驗證的「甲」由第一個決策項目獲得的報酬將全數歸零。為極大化實驗報酬，若您為「甲」，請照實填寫，亦可參考驗證方式查詢正確答案。<br>
+		照實填寫將極大化「甲」的實驗報酬，但並不代表「甲」同意此部分的答案於未來實驗或本實驗中使用。實驗結束前，「甲」可於一頁面選擇是否授權實驗者於未來實驗中使用此部分的匿名資料。
+
+		</li>
+		<li style="margin: 1rem 0rem;">
+			<span class="bold">「乙」</span>的任務是使用其他場次中的某「甲」已授權使用的 {{Constants.num_quest_need}} 項資料。每個問題的資料將於點擊該問題時顯示在問題的下方，「乙」須將資料複製貼上至問題後方的空格。完成 {{Constants.num_quest_need}} 項資料後，「乙」可自第一個決策項目獲得 {{Constants.b_role_payoff}} 元。<br>
+			在這場實驗的最後，電腦會自 {{ Constants.b_role_val_num }} 名「乙」中隨機抽取一名驗證所有答案。若答案與某「甲」選填的資料一致，被驗證的「乙」將額外獲得 {{Constants.b_role_bonus}} 元。若任何一題驗證時發現錯誤，被驗證的「乙」由第一個決策項目獲得的報酬將全數歸零。為極大化實驗報酬，若您為「乙」，請完整複製貼上。<br>
+			完整複製貼上將極大化「乙」的實驗報酬。「乙」使用的資料為其他場次中的某「甲」已授權同意實驗者使用的 {{Constants.num_quest_need}} 項資料。
+		</li>
+	</ul>
+
+	<div class="line"></div>
+
+	<ol id = container></ol>
+
+	<div class="line"></div>
+	閱讀完畢後，請點擊「下一頁」繼續本實驗。<br><br>
+	<button class="otree-btn-next btn btn-primary" >下一頁</button>
+
+<script>
+	// 點擊就顯示填寫框的效果
+	var list = document.querySelector('ol');
+	list.addEventListener('click', function(ev) {
+	  if (ev.target.tagName === 'LI' & ev.target.className === 'notshow') {
+
+  		var list = document.querySelectorAll('li.show');
+		for (var item of list) {
+			item.className = "notshow";
+		}
+		ev.target.className = "show";
+	}
+
+	else if (ev.target.tagName === "LI" & ev.target.className === 'show'){
+		ev.target.className = "notshow";
+	}
+	}, false);
+</script>
+
+<script>
+	// 動態加入 25 項個人資料
+	var list = document.getElementById("container");
+
+	for (const [key, value] of Object.entries(js_vars)) {
+		
+		// 建立 <li> 
+		var li = document.createElement("li");
+		li.id = key;
+		li.className = "notshow";
+
+		// 加上項目文字
+		var txt1 = document.createTextNode(value.info);
+		li.appendChild(txt1);
+
+		// 加上驗證文字
+		var p = document.createElement("p");
+		var txt2 = value.val;
+		p.innerHTML = txt2;
+		
+
+		var div = document.createElement("div");
+		div.appendChild(p);
+		div.className = "fill";
+
+		li.appendChild(div);
+		list.appendChild(li);
+	}
+
+</script>
+
+<script>
+$(document).bind("contextmenu copy selectstart", function(){
+    return false;
+});
+</script>
+
+<script>
+	setTimeout(function(){document.querySelector('.otree-btn-next').className+= ' twinkle'}, 60000);
+</script>
+
+<style type="text/css">
+        .twinkle{
+            color: #fff;
+            border: #0d6efd;
+            animation: twinkle 1s alternate infinite;
+        }
+        @keyframes twinkle{
+			from{background: #0d6efd;}
+            to{background: #0d6dfd4f;}
+        }	
+</style>
+{{ endblock }}
+

@@ -1,0 +1,60 @@
+
+{{ block title }}
+	第二階段：輸入ID
+{{ endblock }}
+{{ block content }}
+<style>
+	.container{
+		max-width: {{Constants.width}};
+	}
+
+	p{
+		line-height: {{Constants.height}};
+	}
+    .debug-info {
+        display: none;
+    }
+</style>
+
+	<p>
+		本決策項目中，電腦會隨機分配 {{Constants.players_per_group}} 人為一組，此分組將維持 {{Constants.pgg_num_rounds}} 回合。<br>
+		您將{{ if player.id_treatment == 'id_user' }}為自己取一個 ID{{ else }}被系統分配一個 ID{{endif}}，用此 ID 進行 {{Constants.pgg_num_rounds}} 回合的互動。您在此決策項目的報酬將由您的決策及您組員的決策共同決定。
+	</p>
+
+	<p>
+		{{ if player.id_treatment == 'id_user' }}
+			{{ formfield 'pgg_id' }}
+		{{ else }}
+			系統分配的 ID 是：{{ player.pgg_id }}
+			{{ formfield 'pgg_id_checking' }}
+		{{ endif }}
+
+	</p>
+		輸入 ID 後，請點擊「下一頁」繼續本實驗。<br><br>
+
+	<button class="otree-btn-next btn btn-primary">下一頁</button>
+	
+<script>
+$(document).bind("contextmenu copy selectstart", function(){
+    return false;
+});
+</script>
+
+<script>
+	setTimeout(function(){document.querySelector('.otree-btn-next').className+= ' twinkle'}, 60000);
+</script>
+
+<style type="text/css">
+        .twinkle{
+            color: #fff;
+            border: #0d6efd;
+            animation: twinkle 1s alternate infinite;
+        }
+        @keyframes twinkle{
+			from{background: #0d6efd;}
+            to{background: #0d6dfd4f;}
+        }	
+</style>
+{{ endblock }}
+
+

@@ -1,0 +1,57 @@
+
+
+{{ block title }}
+    實驗建議
+{{ endblock }}
+{{ block content }}
+<style>
+.important{
+    font-weight: bolder;
+}
+
+.line{
+        border-bottom: black 1px solid;
+        margin: 1.5rem 0rem;
+    }
+
+td{
+    border: black 1px solid;
+    text-align: center;
+    padding: 1rem 1rem;
+}
+    .container{
+		max-width: {{Constants.width}};
+	}
+
+	p{
+		line-height: {{Constants.height}};
+	}
+
+    .debug-info {
+        display: none;
+    }
+
+    .form-control{
+        height: 10rem;
+    }
+</style>
+<script>
+	setTimeout(function(){document.querySelector('.otree-btn-next').className+= ' twinkle'}, 60000);
+</script>
+
+<style type="text/css">
+        .twinkle{
+            color: #fff;
+            border: #0d6efd;
+            animation: twinkle 1s alternate infinite;
+        }
+        @keyframes twinkle{
+			from{background: #0d6efd;}
+            to{background: #0d6dfd4f;}
+        }	
+</style>
+
+    {{ formfields }}
+填寫完畢後，請點擊「下一頁」繼續本實驗。<br><br>
+	<button class="otree-btn-next btn btn-primary">下一頁</button>
+{{ endblock }}

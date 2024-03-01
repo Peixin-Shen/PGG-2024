@@ -1,0 +1,130 @@
+
+{{ block title }}
+    授權使用匿名資料：結果
+{{ endblock }}
+{{ block content }}
+<style>
+.debug-info {
+    display: none;
+}
+.agree{
+    display: none;
+}
+
+.disagree{
+    display: none;
+}
+
+.important{
+    font-weight: bolder;
+}
+
+td{
+    border: black 1px solid;
+    text-align: center;
+    padding: 1rem 1rem;
+}
+
+    .container{
+		max-width: {{Constants.width}};
+	}
+
+	p{
+		line-height: {{Constants.height}};
+	}
+
+    .line{
+        border-bottom: black 1px solid;
+        margin: 1.5rem 0rem;
+    }
+
+
+</style>
+
+    <div class="pgg">
+        <p>
+            電腦抽中的價格是：{{player.mpl_number}}
+        </p>
+
+        <p class="agree">
+            在此價格您<span class="important">同意</span>授權實驗者於未來的實驗中匿名使用您的 20 個資料項目<br>
+            此價格將<span class="important">會</span>加計入您的實驗報酬 
+        </p>
+
+        <p class="disagree">
+            在此價格您<span class="important">不同意</span>授權實驗者於未來的實驗中匿名使用您的 20 個資料項目<br>
+            此價格將<span class="important">不會</span>加計入您的實驗報酬 
+        </p>
+
+        <div class="line"></div>
+    </div>
+
+    <p>
+        以下為您在本次實驗中獲得的報酬：
+    </p>
+    
+
+    <table border="1" style="margin: 1rem 0rem;">
+        <tr>
+            <td style="width: 20%;">參與費</td>
+            <td>$50</td>
+        </tr>
+        <tr>
+            <td>第一個<br>決策項目的報酬</td>
+            <td>可能為：$0 (驗證時發現錯誤)、$100（未抽中驗證）或 $100+$100（驗證一致）</td>
+        </tr>
+        <tr class="pgg">
+            <td>隱私授權的報酬</td>
+            <td>${{player.mpl_payoff}}</td>
+        </tr>
+        <tr style="background-color: cornsilk;">
+            <td>總報酬</td>
+            <td>已確定報酬：${{total_payoff}} +<br>$0 (驗證時發現錯誤)、$100（未抽中驗證）或 $100+$100（驗證一致）</td>
+        </tr>
+
+    </table>
+
+    <div class="line"></div>
+
+    <p>
+        在第一個決策項目中，您填入了 25 項中的 20 項資料。現在，電腦會自 2 名「甲」中隨機抽取一名驗證所有答案。<br>
+        下一頁將告知您是否被電腦抽中驗證資料。
+    </p>
+
+    閱讀完畢後，請點擊「下一頁」繼續本實驗。<br><br>
+	<button class="otree-btn-next btn btn-primary">下一頁</button>
+
+
+<script>
+    if ({{player.mpl_agree}} == 1){
+            $('.agree').show()
+        }else{
+            $('.disagree').show()
+        }
+    }
+
+</script>
+
+<script>
+$(document).bind("contextmenu copy selectstart", function(){
+    return false;
+});
+</script>
+
+<script>
+	setTimeout(function(){document.querySelector('.otree-btn-next').className+= ' twinkle'}, 60000);
+</script>
+
+<style type="text/css">
+        .twinkle{
+            color: #fff;
+            border: #0d6efd;
+            animation: twinkle 1s alternate infinite;
+        }
+        @keyframes twinkle{
+			from{background: #0d6efd;}
+            to{background: #0d6dfd4f;}
+        }	
+</style>
+
+{{ endblock }}

@@ -1,0 +1,494 @@
+<style>
+    .container{
+        max-width: 850px;
+    }
+
+    .transition_none *{
+        -webkit-transition:none!important;
+        -moz-transition:none!important;
+        -ms-transition:none!important;
+        -o-transition:none!important;
+        transition:none!important;
+    }
+
+    .row{
+        width: 80%;
+        margin: 1rem 0;
+    }
+
+    .col-2{
+        border: black 1px solid;
+        border-radius: 20px;
+        height: 150px;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .bg{     
+        background-image: url("{{static 'global/bg.png'}}");
+        background-size: 1100%;
+        background-position: center;
+        opacity: 1;
+        transition:1s;
+    }
+
+    img{
+        width: 70%;
+    }
+
+    a{
+        text-decoration: none;
+        color: black;
+    }
+
+    a:hover{
+        color: black;
+        transform: scale(1.1,1.1);
+        transition: 0.3s
+    }
+
+    .notshow{
+        opacity: 0;
+        transition:1s;
+    }
+
+    .show{
+        opacity: 1;
+        transition: 1s;
+    }
+</style>
+
+{{ block title }}
+    卡牌頁面
+{{ endblock }}
+{{ block content }}
+<h5>資料使用者的ID：Tassel123</h5>
+<h5>使用者使用的他人資料如下</h5>
+
+<div class="transition_none">
+    <div class="row justify-content-around">
+        <a class="col-2 bg card-1" onclick="card_1()" id="card-1" value="0">
+            <div class="notshow" id="contain-1">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-2" onclick="card_2()" id="card-2" value="0">
+            <div class="notshow" id="contain-2">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-3" onclick="card_3()" id="card-3" value="0">
+            <div class="notshow" id="contain-3">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-4" onclick="card_4()" id="card-4" value="0">
+            <div class="notshow" id="contain-4">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-5" onclick="card_5()" id="card-5" value="0">
+            <div class="notshow" id="contain-5">
+                <h5>法幣</h5>
+                <img src="https://cdn-icons-png.flaticon.com/512/2933/2933116.png" alt=""><br>
+                <span>捐贈</span>
+            </div>
+        </a>
+    </div>
+    <div class="row justify-content-around">
+        <a class="col-2 bg card-6" onclick="card_6()" id="card-6" value="0">
+            <div class="notshow" id="contain-6">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-7" onclick="card_7()" id="card-7" value="0">
+            <div class="notshow" id="contain-7">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-8" onclick="card_8()" id="card-8" value="0">
+            <div class="notshow" id="contain-8">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-9" onclick="card_9()" id="card-9" value="0">
+            <div class="notshow" id="contain-9">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-10" onclick="card_10()" id="card-10" value="0">
+            <div class="notshow" id="contain-10">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+    </div>
+    <div class="row justify-content-around">
+        <a class="col-2 bg card-11" onclick="card_11()" id="card-11" value="0">
+            <div class="notshow" id="contain-11">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-12" onclick="card_12()" id="card-12" value="0">
+            <div class="notshow" id="contain-12">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-13" onclick="card_13()" id="card-13" value="0">
+            <div class="notshow" id="contain-13">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-14" onclick="card_14()" id="card-14" value="0">
+            <div class="notshow" id="contain-14">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-15" onclick="card_15()" id="card-15" value="0">
+            <div class="notshow" id="contain-15">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+    </div>
+    <div class="row justify-content-around">
+        <a class="col-2 bg card-16" onclick="card_16()" id="card-16" value="0">
+            <div class="notshow" id="contain-16">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-17" onclick="card_17()" id="card-17" value="0">
+            <div class="notshow" id="contain-17">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-18" onclick="card_18()" id="card-18" value="0">
+            <div class="notshow" id="contain-18">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-19" onclick="card_19()" id="card-19" value="0">
+            <div class="notshow" id="contain-19">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+        <a class="col-2 bg card-20" onclick="card_20()" id="card-20" value="0">
+            <div class="notshow" id="contain-20">
+                <h5>體重</h5>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstmdHVcBezjBGeEK8zv0G6ajmfdUmDhJYlw&usqp=CAU" alt=""><br>
+                <span>70kg</span>
+            </div>
+        </a>
+    </div>
+</div>
+    
+
+
+
+    {{ next_button }}
+
+{{ endblock }}
+
+<script language="javascript">
+    function card_1(){
+        if ($("#card-1").attr("value") == 0){
+            $("#card-1").attr("value", 1)
+            $("#card-1").removeClass('bg')
+            $("#contain-1").removeClass('notshow')
+            $("#contain-1").addClass('show')
+        } else{
+            $("#card-1").attr("value", 0)
+            $("#card-1").addClass('bg')
+            $("#contain-1").addClass('notshow')
+            $("#contain-1").removeClass('show')
+        }
+    }
+    function card_2(){
+        if ($("#card-2").attr("value") == 0){
+            $("#card-2").attr("value", 1)
+            $("#card-2").removeClass('bg')
+            $("#contain-2").removeClass('notshow')
+            $("#contain-2").addClass('show')
+        } else{
+            $("#card-2").attr("value", 0)
+            $("#card-2").addClass('bg')
+            $("#contain-2").addClass('notshow')
+            $("#contain-2").removeClass('show')
+        }
+    }
+    function card_3(){
+        if ($("#card-3").attr("value") == 0){
+            $("#card-3").attr("value", 1)
+            $("#card-3").removeClass('bg')
+            $("#contain-3").removeClass('notshow')
+            $("#contain-3").addClass('show')
+        } else{
+            $("#card-3").attr("value", 0)
+            $("#card-3").addClass('bg')
+            $("#contain-3").addClass('notshow')
+            $("#contain-3").removeClass('show')
+        }
+    }
+    function card_4(){
+        if ($("#card-4").attr("value") == 0){
+            $("#card-4").attr("value", 1)
+            $("#card-4").removeClass('bg')
+            $("#contain-4").removeClass('notshow')
+            $("#contain-4").addClass('show')
+        } else{
+            $("#card-4").attr("value", 0)
+            $("#card-4").addClass('bg')
+            $("#contain-4").addClass('notshow')
+            $("#contain-4").removeClass('show')
+        }
+    }
+    function card_5(){
+        if ($("#card-5").attr("value") == 0){
+            $("#card-5").attr("value", 1)
+            $("#card-5").removeClass('bg')
+            $("#contain-5").removeClass('notshow')
+            $("#contain-5").addClass('show')
+        } else{
+            $("#card-5").attr("value", 0)
+            $("#card-5").addClass('bg')
+            $("#contain-5").addClass('notshow')
+            $("#contain-5").removeClass('show')
+        }
+    }
+    function card_6(){
+        if ($("#card-6").attr("value") == 0){
+            $("#card-6").attr("value", 1)
+            $("#card-6").removeClass('bg')
+            $("#contain-6").removeClass('notshow')
+            $("#contain-6").addClass('show')
+        } else{
+            $("#card-6").attr("value", 0)
+            $("#card-6").addClass('bg')
+            $("#contain-6").addClass('notshow')
+            $("#contain-6").removeClass('show')
+        }
+    }
+    function card_7(){
+        if ($("#card-7").attr("value") == 0){
+            $("#card-7").attr("value", 1)
+            $("#card-7").removeClass('bg')
+            $("#contain-7").removeClass('notshow')
+            $("#contain-7").addClass('show')
+        } else{
+            $("#card-7").attr("value", 0)
+            $("#card-7").addClass('bg')
+            $("#contain-7").addClass('notshow')
+            $("#contain-7").removeClass('show')
+        }
+    }
+    function card_8(){
+        if ($("#card-8").attr("value") == 0){
+            $("#card-8").attr("value", 1)
+            $("#card-8").removeClass('bg')
+            $("#contain-8").removeClass('notshow')
+            $("#contain-8").addClass('show')
+        } else{
+            $("#card-8").attr("value", 0)
+            $("#card-8").addClass('bg')
+            $("#contain-8").addClass('notshow')
+            $("#contain-8").removeClass('show')
+        }
+    }
+    function card_9(){
+        if ($("#card-9").attr("value") == 0){
+            $("#card-9").attr("value", 1)
+            $("#card-9").removeClass('bg')
+            $("#contain-9").removeClass('notshow')
+            $("#contain-9").addClass('show')
+        } else{
+            $("#card-9").attr("value", 0)
+            $("#card-9").addClass('bg')
+            $("#contain-9").addClass('notshow')
+            $("#contain-9").removeClass('show')
+        }
+    }
+    function card_10(){
+        if ($("#card-10").attr("value") == 0){
+            $("#card-10").attr("value", 1)
+            $("#card-10").removeClass('bg')
+            $("#contain-10").removeClass('notshow')
+            $("#contain-10").addClass('show')
+        } else{
+            $("#card-10").attr("value", 0)
+            $("#card-10").addClass('bg')
+            $("#contain-10").addClass('notshow')
+            $("#contain-10").removeClass('show')
+        }
+    }
+    function card_11(){
+        if ($("#card-11").attr("value") == 0){
+            $("#card-11").attr("value", 1)
+            $("#card-11").removeClass('bg')
+            $("#contain-11").removeClass('notshow')
+            $("#contain-11").addClass('show')
+        } else{
+            $("#card-11").attr("value", 0)
+            $("#card-11").addClass('bg')
+            $("#contain-11").addClass('notshow')
+            $("#contain-11").removeClass('show')
+        }
+    }
+    function card_12(){
+        if ($("#card-12").attr("value") == 0){
+            $("#card-12").attr("value", 1)
+            $("#card-12").removeClass('bg')
+            $("#contain-12").removeClass('notshow')
+            $("#contain-12").addClass('show')
+        } else{
+            $("#card-12").attr("value", 0)
+            $("#card-12").addClass('bg')
+            $("#contain-12").addClass('notshow')
+            $("#contain-12").removeClass('show')
+        }
+    }
+    function card_13(){
+        if ($("#card-13").attr("value") == 0){
+            $("#card-13").attr("value", 1)
+            $("#card-13").removeClass('bg')
+            $("#contain-13").removeClass('notshow')
+            $("#contain-13").addClass('show')
+        } else{
+            $("#card-13").attr("value", 0)
+            $("#card-13").addClass('bg')
+            $("#contain-13").addClass('notshow')
+            $("#contain-13").removeClass('show')
+        }
+    }
+    function card_14(){
+        if ($("#card-14").attr("value") == 0){
+            $("#card-14").attr("value", 1)
+            $("#card-14").removeClass('bg')
+            $("#contain-14").removeClass('notshow')
+            $("#contain-14").addClass('show')
+        } else{
+            $("#card-14").attr("value", 0)
+            $("#card-14").addClass('bg')
+            $("#contain-14").addClass('notshow')
+            $("#contain-14").removeClass('show')
+        }
+    }
+    function card_15(){
+        if ($("#card-15").attr("value") == 0){
+            $("#card-15").attr("value", 1)
+            $("#card-15").removeClass('bg')
+            $("#contain-15").removeClass('notshow')
+            $("#contain-15").addClass('show')
+        } else{
+            $("#card-15").attr("value", 0)
+            $("#card-15").addClass('bg')
+            $("#contain-15").addClass('notshow')
+            $("#contain-15").removeClass('show')
+        }
+    }
+    function card_16(){
+        if ($("#card-16").attr("value") == 0){
+            $("#card-16").attr("value", 1)
+            $("#card-16").removeClass('bg')
+            $("#contain-16").removeClass('notshow')
+            $("#contain-16").addClass('show')
+        } else{
+            $("#card-16").attr("value", 0)
+            $("#card-16").addClass('bg')
+            $("#contain-16").addClass('notshow')
+            $("#contain-16").removeClass('show')
+        }
+    }
+    function card_17(){
+        if ($("#card-17").attr("value") == 0){
+            $("#card-17").attr("value", 1)
+            $("#card-17").removeClass('bg')
+            $("#contain-17").removeClass('notshow')
+            $("#contain-17").addClass('show')
+        } else{
+            $("#card-17").attr("value", 0)
+            $("#card-17").addClass('bg')
+            $("#contain-17").addClass('notshow')
+            $("#contain-17").removeClass('show')
+        }
+    }
+    function card_18(){
+        if ($("#card-18").attr("value") == 0){
+            $("#card-18").attr("value", 1)
+            $("#card-18").removeClass('bg')
+            $("#contain-18").removeClass('notshow')
+            $("#contain-18").addClass('show')
+        } else{
+            $("#card-18").attr("value", 0)
+            $("#card-18").addClass('bg')
+            $("#contain-18").addClass('notshow')
+            $("#contain-18").removeClass('show')
+        }
+    }
+    function card_19(){
+        if ($("#card-19").attr("value") == 0){
+            $("#card-19").attr("value", 1)
+            $("#card-19").removeClass('bg')
+            $("#contain-19").removeClass('notshow')
+            $("#contain-19").addClass('show')
+        } else{
+            $("#card-19").attr("value", 0)
+            $("#card-19").addClass('bg')
+            $("#contain-19").addClass('notshow')
+            $("#contain-19").removeClass('show')
+        }
+    }
+    function card_20(){
+        if ($("#card-20").attr("value") == 0){
+            $("#card-20").attr("value", 1)
+            $("#card-20").removeClass('bg')
+            $("#contain-20").removeClass('notshow')
+            $("#contain-20").addClass('show')
+        } else{
+            $("#card-20").attr("value", 0)
+            $("#card-20").addClass('bg')
+            $("#contain-20").addClass('notshow')
+            $("#contain-20").removeClass('show')
+        }
+    }
+</script>
+
+<script>
+        let getBody =  document.querySelector('.transition_none');
+        window.onload = function(){
+             getBody.className = '';
+        }    
+</script>  

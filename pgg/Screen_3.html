@@ -1,0 +1,220 @@
+{{ block title }}
+第一階段：確認頁面
+{{ endblock }}
+
+{{ block content }}
+<style>
+    .container {
+
+    max-width: {
+
+    {
+        Constants . width
+    }
+    }
+    ;
+    }
+
+    p {
+
+    line-height: {
+
+    {
+        Constants . height
+    }
+    }
+    ;
+    }
+
+    .row {
+        width: 80%;
+        margin: 1rem 0;
+    }
+
+    .col-2 {
+        border: black 1px solid;
+        border-radius: 20px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .bg {
+        background-color: #fff3cd;
+    }
+
+    img {
+        width: 70%;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        align-items: center;
+    }
+
+    a:hover {
+        color: black;
+
+    }
+
+    h5 {
+        font-size: 14px;
+    }
+
+    .debug-info {
+        display: none;
+    }
+
+</style>
+
+<p>
+    您在此決策項目中的角色為：{{ if player.pgg_role == 'A'}}「甲」{{ elif player.pgg_role == 'B'}}「乙」{{ endif }}
+</p>
+
+<p>
+    您的 {{ Constants.num_quest_need }} 個資料項目如下，請確認。
+</p>
+
+<div class="row justify-content-around">
+    <a class="col-2 bg card-1" onclick="card_1()" id="card-1" value="0">
+        <div class="notshow" id="contain-1">
+            <h5>{{ info_1 }}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-2" onclick="card_2()" id="card-2" value="0">
+        <div class="notshow" id="contain-2">
+            <h5>{{ info_2 }}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-3" onclick="card_3()" id="card-3" value="0">
+        <div class="notshow" id="contain-3">
+            <h5>{{ info_3 }}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-4" onclick="card_4()" id="card-4" value="0">
+        <div class="notshow" id="contain-4">
+            <h5>{{ info_4 }}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-5" onclick="card_5()" id="card-5" value="0">
+        <div class="notshow" id="contain-5">
+            <h5>{{ info_5 }}</h5>
+        </div>
+    </a>
+</div>
+<div class="row justify-content-around">
+    <a class="col-2 bg card-6" onclick="card_6()" id="card-6" value="0">
+        <div class="notshow" id="contain-6">
+            <h5>{{ info_6 }}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-7" onclick="card_7()" id="card-7" value="0">
+        <div class="notshow" id="contain-7">
+            <h5>{{info_7}}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-8" onclick="card_8()" id="card-8" value="0">
+        <div class="notshow" id="contain-8">
+            <h5>{{info_8}}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-9" onclick="card_9()" id="card-9" value="0">
+        <div class="notshow" id="contain-9">
+            <h5>{{info_9}}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-10" onclick="card_10()" id="card-10" value="0">
+        <div class="notshow" id="contain-10">
+            <h5>{{info_10}}</h5>
+        </div>
+    </a>
+</div>
+<div class="row justify-content-around">
+    <a class="col-2 bg card-11" onclick="card_11()" id="card-11" value="0">
+        <div class="notshow" id="contain-11">
+            <h5>{{info_11}}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-12" onclick="card_12()" id="card-12" value="0">
+        <div class="notshow" id="contain-12">
+            <h5>{{info_12}}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-13" onclick="card_13()" id="card-13" value="0">
+        <div class="notshow" id="contain-13">
+            <h5>{{info_13}}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-14" onclick="card_14()" id="card-14" value="0">
+        <div class="notshow" id="contain-14">
+            <h5>{{info_14}}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-15" onclick="card_15()" id="card-15" value="0">
+        <div class="notshow" id="contain-15">
+            <h5>{{info_15}}</h5>
+        </div>
+    </a>
+</div>
+<div class="row justify-content-around">
+    <a class="col-2 bg card-16" onclick="card_16()" id="card-16" value="0">
+        <div class="notshow" id="contain-16">
+            <h5>{{info_16}}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-17" onclick="card_17()" id="card-17" value="0">
+        <div class="notshow" id="contain-17">
+            <h5>{{info_17}}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-18" onclick="card_18()" id="card-18" value="0">
+        <div class="notshow" id="contain-18">
+            <h5>{{info_18}}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-19" onclick="card_19()" id="card-19" value="0">
+        <div class="notshow" id="contain-19">
+            <h5>{{info_19}}</h5>
+        </div>
+    </a>
+    <a class="col-2 bg card-20" onclick="card_20()" id="card-20" value="0">
+        <div class="notshow" id="contain-20">
+            <h5>{{info_20}}</h5>
+        </div>
+    </a>
+</div>
+確認完畢後，請點擊「下一頁」繼續本實驗。<br><br>
+<button class="otree-btn-next btn btn-primary">下一頁</button>
+
+
+<script>
+    $(document).bind("contextmenu copy selectstart", function () {
+        return false;
+    });
+</script>
+
+<script>
+    setTimeout(function () {
+        document.querySelector('.otree-btn-next').className += ' twinkle'
+    }, 60000);
+</script>
+
+<style type="text/css">
+    .twinkle {
+        color: #fff;
+        border: #0d6efd;
+        animation: twinkle 1s alternate infinite;
+    }
+
+    @keyframes twinkle {
+        from {
+            background: #0d6efd;
+        }
+        to {
+            background: #0d6dfd4f;
+        }
+    }
+</style>
+{{ endblock }}

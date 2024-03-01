@@ -1,0 +1,178 @@
+
+{{ block title }}
+	第二階段：實驗說明
+{{ endblock }}
+{{ block content }}
+
+<script type="text/javascript"
+  src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<style>
+	.container{
+		max-width: {{Constants.width}};
+	}
+
+	p{
+		line-height: {{Constants.height}};
+	}
+
+	.instruction-1{
+		display: none;
+	}
+
+	.instruction-2{
+		display: none;
+	}
+
+	.block{
+		border: 1px black solid; 
+		border-radius: 1rem; 
+		padding: 1rem;
+	}
+
+	input{
+		margin: 1rem;
+	}
+
+	#show1 {
+		color: gray;
+		display: block;
+		margin: 1rem 0;
+	}
+
+	#show2 {
+		color: gray;
+		display: block;
+		margin: 1rem 0;
+	}
+
+	#show1:hover{
+		cursor: pointer;
+	}
+
+	#show2:hover{
+		cursor: pointer;
+	}
+    .debug-info {
+        display: none;
+    }
+</style>
+
+
+	<h4>1. 第二個決策項目：十回合的合作案</h4>
+	<p>在下個頁面，您將需要回答理解測驗，以確保您充分了解本決策項目，請詳細閱讀說明。</p>
+    <a onclick="show_1()" id="show1">-> 點擊以展開說明</a>
+
+	<div class="instruction-1">
+	<p>
+		每回合，您的 {{ Constants.players_per_group }} 人小組會共同執行一個合作案。
+		<br>
+		每回合合作案開始時，每位成員將擁有 {{ Constants.endowment }} {{ if player.contri_treatment == 'money' }}個法幣{{ elif player.contri_treatment == 'own_info'}}項來自第一階段自己提供的資料{{ else }}項來自第一階段他人提供的資料{{ endif }}。每{{ if player.contri_treatment == 'money' }}個法幣{{ elif player.contri_treatment == 'own_info'}}項資料{{ else }}項資料{{ endif }}的價值為 1 元新台幣。
+	</p>
+
+	<p>
+		每回合，每位成員將自由決定自己要為合作案貢獻多少{{ if player.contri_treatment == 'money' }}法幣。{{ elif player.contri_treatment == 'own_info'}}資料。{{ else }}資料。{{ endif }}
+		<br>
+		貢獻量可以是 0 到 {{ Constants.endowment }} 之間的任何整數。假設您該回合選擇的貢獻量為 y，電腦會隨機自您擁有的 {{ Constants.endowment }} {{ if player.contri_treatment == 'money' }}個法幣{{ elif player.contri_treatment == 'own_info'}}項資料{{ else }}項資料{{ endif }}中，隨機抽取 y 個捐給小組，
+		{{ if player.contri_treatment == 'money' }}每個法幣{{ elif player.contri_treatment == 'own_info'}}每項資料{{ else }}每項資料{{ endif }}被抽中的機會相同。
+	</p>
+
+	<p>
+		所有組員的貢獻量相加為小組總量。每回合合作案的總收益為小組總量乘以 {{ Constants.multiplier }} 倍，由 {{ Constants.players_per_group }} 位組員平分，作為您分得的合作案收益。您每回合的報酬等於您分得的合作案收益，加上 {{ Constants.endowment }} {{ if player.contri_treatment == 'money' }}個法幣{{ elif player.contri_treatment == 'own_info'}}項資料{{ else }}項資料{{ endif }}中您未貢獻的量。報酬計算公式如下：<br>
+
+		<!-- \begin{align*}
+			報酬 = (20 - 您的貢獻量) + 2 \times \frac{小組總量}{4}
+		\end{align*} -->
+
+		<img src="{{static 'global/formula_white.png'}}" alt="" style="black solid; padding: 1rem; width: 50%;">
+		<br>
+
+
+		每回合結束時，畫面將顯示該回合您的貢獻量，小組總量，您保留的{{ if player.contri_treatment == 'money' }}法幣{{ elif player.contri_treatment == 'own_info'}}資料{{ else }}資料{{ endif }}產生的報酬，您分得的合作案收益，以及您該回合的報酬。
+	</p>
+
+	<p>
+		此決策項目的報酬是累積的，您第二個決策項目的報酬為您 {{ Constants.pgg_num_rounds }} 回合的報酬加總。
+	</p>
+	</div>
+
+	<h4>2. 貢獻的使用方式 </h4>
+    <a onclick="show_2()" id="show2">-> 點擊以展開說明</a>
+
+	<div class="instruction-2">
+	<p>
+		本系列實驗全部完成後，您的貢獻將會與您{{ if player.id_treatment == "id_user" }}為自己取的 ID {{ else }}被系統分配的 ID {{ endif }}一起展示於未來其他系列的實驗。您每回合的貢獻將分別被一位不同的受試者觀看。		
+	</p>
+
+	<p>
+		觀看方式如下：<br>
+		每位觀看者的實驗畫面會顯示您{{ if player.id_treatment == 'id_user' }}為自己取的 ID{{ else }}被系統分配的 ID {{ endif }}
+		與 {{ Constants.endowment }} 張對應您某回合中 {{ Constants.endowment }} {{ if player.contri_treatment == 'money' }}個法幣{{ elif player.contri_treatment == 'own_info'}}項資料{{ else }}項資料{{ endif }}的牌卡。每張牌卡代表一{{ if player.contri_treatment == 'money' }}個法幣{{ elif player.contri_treatment == 'own_info'}}項資料{{ else }}項資料{{ endif }}。
+		觀看者可點擊翻開任意數目的牌卡。點擊一下將顯示牌卡代表的{{ if player.contri_treatment == 'money' }}法幣編號{{ elif player.contri_treatment == 'own_info'}}資料項目{{ else }}資料項目{{ endif }}，觀看者可猜測每張牌卡代表的{{ if player.contri_treatment == 'money' }}法幣{{ elif player.contri_treatment == 'own_info'}}資料{{ else }}資料{{ endif }}為被抽中貢獻或未被抽中。每猜中一張，觀看者可獲得新台幣 {{ Constants.viewer_guess_bonus }} 元。
+		<br>
+		猜測後，再點擊一下可翻開牌卡。翻開後，若該牌卡代表的{{ if player.contri_treatment == 'money' }}法幣{{ elif player.contri_treatment == 'own_info'}}資料{{ else }}資料{{ endif }}為被抽中貢獻的{{ if player.contri_treatment == 'money' }}法幣{{ elif player.contri_treatment == 'own_info'}}資料{{ else }}資料{{ endif }}，該牌卡將顯示{{ if player.contri_treatment == 'money' }}該個法幣{{ elif player.contri_treatment == 'own_info'}}該項資料{{ else }}該項資料{{ endif }}。若翻開的牌卡並非被抽中貢獻的{{ if player.contri_treatment == 'money' }}法幣{{ elif player.contri_treatment == 'own_info'}}資料{{ else }}資料{{ endif }}，該牌卡將顯示為空白。
+	</p>
+
+	<br>
+	<h6>以下為觀看示意圖：</h6>
+	<div class="block">
+		<h3>卡牌頁面</h3>
+		<h5>資料使用者的ID：{{player.pgg_id}}</h5>
+		<h5>使用者使用的他人資料如下</h5>
+		{{if player.contri_treatment == 'money'}}<img src="{{static 'global/card_money.jpg'}}" alt="">{{ else }}<img src="{{static 'global/card_info.jpg'}}" alt="">{{ endif }}
+	</div>
+	
+	
+	
+	</div>
+	<br>
+		閱讀完畢後，請點擊「下一頁」繼續本實驗。<br><br>
+	<button class="otree-btn-next btn btn-primary">下一頁</button>
+
+
+<script language="javascript">
+	function show_1(){		
+		if (document.getElementById("show1").textContent == "-> 點擊以展開說明"){
+			$(".instruction-1").show()
+			document.getElementById("show1").textContent = "-> 點擊以收合說明"
+		} else{
+			$(".instruction-1").hide()
+			document.getElementById("show1").textContent = "-> 點擊以展開說明"
+		}
+	}
+
+	function show_2(){		
+		if (document.getElementById("show2").textContent == "-> 點擊以展開說明"){
+			$(".instruction-2").show()
+			document.getElementById("show2").textContent = "-> 點擊以收合說明"
+		} else{
+			$(".instruction-2").hide()
+			document.getElementById("show2").textContent = "-> 點擊以展開說明"
+		}
+
+	}
+</script>
+
+<script>
+$(document).bind("contextmenu copy selectstart", function(){
+    return false;
+});
+</script>
+
+<script>
+	setTimeout(function(){document.querySelector('.otree-btn-next').className+= ' twinkle'}, 60000);
+</script>
+
+<style type="text/css">
+        .twinkle{
+            color: #fff;
+            border: #0d6efd;
+            animation: twinkle 1s alternate infinite;
+        }
+        @keyframes twinkle{
+			from{background: #0d6efd;}
+            to{background: #0d6dfd4f;}
+        }	
+</style>
+{{ endblock }}

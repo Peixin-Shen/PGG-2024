@@ -1,0 +1,79 @@
+{{ block title }}
+	歡迎！
+{{ endblock }}
+
+{{ block content }}
+<style>
+	.container {
+		max-width: {
+				{
+				Constants.width
+			}
+		}
+
+		;
+	}
+
+	p {
+		line-height: {
+				{
+				Constants.height
+			}
+		}
+
+		;
+	}
+
+	.line {
+		border-bottom: 1px solid black;
+		margin: 1rem 0;
+	}
+
+	.debug-info {
+		display: none;
+	}
+</style>
+	<p>
+	準時在線上報到，您將獲得定額參與費新台幣 ${{ participation_fee }} 元。在實驗中，您的額外報酬將由您的決策與運氣共同決定。您在實驗中獲得的報酬將與定額參與費一同透過學校主計室，以匯款的形式發放。
+	</p>
+	<p>
+		本實驗包含兩個決策項目跟一個問卷，需時約一個半小時。在您作答期間，請勿與任何人交談。謝謝您的合作。
+	</p>
+
+	<div class="line"></div>
+
+	<p>
+		在實驗開始前，請您詳細閱讀以下知情同意書的相關資訊。
+	</p>
+
+	<iframe src="{{static 'global/知情同意書.pdf'}}" width="100%" height="600px"></iframe>
+	<p>
+		您可點擊下方選項「我已詳閱此同意書」，表示您已閱讀並了解這份文件的內容、您已年滿 18 歲、並且您自願同意擔任此研究的研究受試者。也代表您同意各項原始紀錄可直接受監測者、稽核者、研究倫理委員會及主管機關檢閱，以確保研究過程與數據，符合相關法律和各種規範要求；上述人員承諾絕對維繫您身分之機密性。您可以列印此同意書之副本。
+	</p>
+	
+	{{ formfields }}
+	<button class="otree-btn-next btn btn-primary">下一頁</button>
+
+<script>
+	$(document).bind("contextmenu copy selectstart", function () {
+		return false;
+	});
+</script>
+
+<script>
+	setTimeout(function(){document.querySelector('.otree-btn-next').className+= ' twinkle'}, 60000);
+</script>
+
+<style type="text/css">
+        .twinkle{
+            color: #fff;
+            border: #0d6efd;
+            animation: twinkle 1s alternate infinite;
+        }
+        @keyframes twinkle{
+			from{background: #0d6efd;}
+            to{background: #0d6dfd4f;}
+        }	
+</style>
+
+{{ endblock }}

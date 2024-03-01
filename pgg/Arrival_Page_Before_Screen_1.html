@@ -1,0 +1,21 @@
+{{ extends 'otree/WaitPage.html' }}
+{{ block title }}{{ title_text }}{{ endblock }}
+{{ block content }}
+<style>
+    .debug-info {
+        display: none;
+    }
+</style>
+{{ body_text }}
+<p></p>
+
+<!--<script>-->
+<!--    setTimeout(-->
+<!--        function () {-->
+<!--            alert("因實驗人數已足夠，您無需進行本次實驗，請您記下剛才為自己取的 id ，到以下網址填寫問卷和匯款資料以領取報酬。謝謝您參與！ https://pgg-privateinfo-yishan.herokuapp.com/room/A_drop ");-->
+<!--            window.open("https://pgg-privateinfo-yishan.herokuapp.com/room/A_drop")-->
+<!--        },-->
+<!--        180000 -->
+<!--    );-->
+<!--</script>-->
+{{ endblock }}

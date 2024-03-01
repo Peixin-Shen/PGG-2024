@@ -1,0 +1,65 @@
+{{ block title }}
+    實驗結束
+{{ endblock }}
+{{ block content }}
+<style>
+.important{
+    font-weight: bolder;
+}
+
+.line{
+        border-bottom: black 1px solid;
+        margin: 1.5rem 0rem;
+    }
+
+td{
+    border: black 1px solid;
+    text-align: center;
+    padding: 1rem 1rem;
+}
+    .container{
+        max-width: {{Constants.width}};
+    }
+
+    p{
+        line-height: {{Constants.height}};
+    }
+
+    .debug-info {
+        display: none;
+    }
+</style>
+
+    <p>
+        由於您不同意參與這個研究案，所以實驗到此結束。<br>
+        您的實驗報酬一共為 ${{participation_fee}} 元。<br> 
+        謝謝您的參與！
+    </p>
+
+    <div class="line"></div>
+
+    <div>
+        <ul>
+            <li>您於本實驗的 ID 為：「{{ player.quit_id }}」。</li>
+            <li>請點選右方連結，以填寫實驗報酬收據：<a href="https://tassel.syd1.qualtrics.com/jfe/form/SV_3L8ic4lpzX8Mjki" target="_blank">https://tassel.syd1.qualtrics.com/jfe/form/SV_3L8ic4lpzX8Mjki</a></li>
+            <li>
+                完成收據前，請勿關閉此頁面。
+            </li>
+        </ul>
+        <p>
+            註：<br>
+            <ol>
+                <li>
+                    負責匯款的會計人員對於實驗設計與實驗結果毫不知情，僅能取得您填寫的個人資訊與您的報酬金額，代表您的一切決策皆是保密的。
+                </li>
+                <li>
+                    您在收據頁面填寫的ID，僅用於確認報酬金額，並不會與您的個人資訊連結。
+                </li>
+
+            </ol>
+        </p>
+   </div>
+
+    
+
+{{ endblock }}

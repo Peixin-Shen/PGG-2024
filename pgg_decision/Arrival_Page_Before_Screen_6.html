@@ -1,0 +1,14 @@
+{{ extends 'otree/WaitPage.html' }}
+{{ block title }}{{ title_text }}{{ endblock }}
+{{ block content }}
+<style>
+    .debug-info {
+        display: none;
+    }
+</style>
+<p>
+    您在本實驗的 id 為 {{ pgg_id }}
+</p>
+
+{{ body_text }}
+{{ endblock }}

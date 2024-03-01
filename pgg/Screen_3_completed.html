@@ -1,0 +1,48 @@
+
+{{ block title }}
+	第一階段：完成
+{{ endblock }}
+
+{{ block content }}
+<style>
+	.container{
+		max-width: {{Constants.width}};
+	}
+
+	p{
+		line-height: {{Constants.height}};
+	}
+    .debug-info {
+        display: none;
+    }
+</style>
+
+	<p>
+		您的第一個決策項目已結束，請點擊「下一頁」繼續本實驗。
+	</p>
+	<button class="otree-btn-next btn btn-primary">下一頁</button>
+
+
+
+<script>
+$(document).bind("contextmenu copy selectstart", function(){
+    return false;
+});
+</script>
+
+<script>
+	setTimeout(function(){document.querySelector('.otree-btn-next').className+= ' twinkle'}, 60000);
+</script>
+
+<style type="text/css">
+        .twinkle{
+            color: #fff;
+            border: #0d6efd;
+            animation: twinkle 1s alternate infinite;
+        }
+        @keyframes twinkle{
+			from{background: #0d6efd;}
+            to{background: #0d6dfd4f;}
+        }	
+</style>
+{{ endblock }}

@@ -1,0 +1,59 @@
+<style>
+	.container{
+		max-width: {{Constants.width}};
+	}
+
+	p{
+		line-height: {{Constants.height}};
+	}
+
+    a{
+        text-decoration: none;
+    }
+
+    .line{
+        border-bottom: black 1px solid;
+        margin: 1rem 0rem;
+    }
+</style>
+
+{{ block title }}
+    Payment
+{{ endblock }}
+{{ block content }}
+
+    <p>
+        謝謝您參與本次實驗。此階段為付款相關，需要您提供相關資訊。<br>
+        您的報酬將依匯款方式支付，為此，請先確認您已於 my NTU 的 <a href="https://mis.cc.ntu.edu.tw/salsys/" target="blank">薪資入帳變更申請系統</a> 正確登錄您的匯款資料。若因您的設定有誤，您將無法獲得本次實驗報酬。
+    </p>
+
+    <p>
+        註:負責匯款的會計人員對於實驗設計與實驗結果毫不知情，僅能取得以下您填寫的個人資訊與您的報酬金額，代表您的一切決策皆是保密的。
+    </p>
+
+    <div class="line"></div>
+
+    <p>
+        若匯款過程有任何問題，會計人員將以電子郵件方式聯絡您。<br>
+        請您填寫註冊 TASSEL 時的 email。(即為您收取此實驗網址的信箱)
+    </p>
+
+    <div class="line"></div>
+
+    <p>
+        請下載<a href="{{static 'payment/payment.pdf'}}" download=""> 電子收據（點擊下載）</a>，以電子方式填寫「日期、姓名、身分證字號、學號、六碼郵遞區號、戶籍地址」，並於「簽章」欄位電子簽名後再上傳(範例如圖)。<br>
+        請注意，戶籍地址務必與身分證之戶籍地一致，需填寫鄰里。若因填寫有誤，您將無法獲得本次實驗報酬。
+    </p>
+    <img src="{{static 'payment/example.jpg'}}" alt="" style="max-width: 80%;">
+
+    <div class="line"></div>
+
+    <p>
+        若您無法及時上傳，請將完成的電子收據於實驗完成的兩天內，寄至陳小姐 <a href="mailto: chensf@ntu.edu.tw">chensf@ntu.edu.tw</a> 。<br> 若對於匯款有任何問題，也請聯絡陳小姐。
+    </p>
+
+    
+    {{ formfields }}
+    <button class="otree-btn-next btn btn-primary">繼續</button>
+
+{{ endblock }}

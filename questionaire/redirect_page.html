@@ -1,0 +1,82 @@
+{{ block title }}
+第二階段：實驗人數不足
+{{ endblock }}
+
+{{ block content }}
+<style>
+    .container {
+
+    max-width: {
+
+    {
+        Constants . width
+    }
+    }
+    ;
+    }
+
+    p {
+
+    line-height: {
+
+    {
+        Constants . height
+    }
+    }
+    ;
+    }
+    .debug-info {
+        display: none;
+    }
+</style>
+
+
+{{ if wait_for_15_mins == True }}
+<p>
+    您好：<br>感謝您的耐心等待。因線上實驗人數尚不足四人，無法進行十回合的分組互動。請點擊下一頁進入實驗問卷，謝謝！
+    <br>您在本實驗的 id 為 {{ pgg_id }}。
+</p>
+{{ elif is_dropout == True }}
+<p>
+    您好：<br>因線上實驗人數不足四人，無法繼續進行分組互動。請點擊下一頁進入實驗問卷，謝謝！
+    <br>您在本實驗的 id 為 {{ pgg_id }}。
+</p>
+{{ else }}
+<p>
+    您好：<br>因線上實驗人數尚不足四人，無法進行十回合的分組互動。請點擊下一頁進入實驗問卷，謝謝！
+    <br>您在本實驗的 id 為 {{ pgg_id }}。
+</p>
+{{ endif }}
+
+<br><br>
+<button class="otree-btn-next btn btn-primary">下一頁</button>
+
+<script>
+    $(document).bind("contextmenu copy selectstart", function () {
+        return false;
+    });
+</script>
+
+<script>
+    setTimeout(function () {
+        document.querySelector('.otree-btn-next').className += ' twinkle'
+    }, 60000);
+</script>
+
+<style type="text/css">
+    .twinkle {
+        color: #fff;
+        border: #0d6efd;
+        animation: twinkle 1s alternate infinite;
+    }
+
+    @keyframes twinkle {
+        from {
+            background: #0d6efd;
+        }
+        to {
+            background: #0d6dfd4f;
+        }
+    }
+</style>
+{{ endblock }}

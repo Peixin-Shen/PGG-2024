@@ -1,0 +1,441 @@
+
+{{ block title }}
+	{{ if player.pgg_role == 'A' }}
+		您在此決策項目中的角色為：「甲」
+	{{ else }}
+		您在此決策項目中的角色為：「乙」
+	{{ endif }}
+{{ endblock }}
+
+{{ block content }}
+
+<style>
+	.notshow {
+		margin: 0.5rem;
+		line-height: 2rem;
+	}
+
+	.notshow > .fill {
+		display: none;
+	}
+
+	.notshow:hover {
+		cursor: pointer;
+		background-color: #82d8d2;
+		transition-duration: 0.15s;
+	}
+
+	.show {
+		background-color: #82d8d2;
+		margin: 0.5rem;
+		line-height: 2rem;
+		transition-duration: 0.1s;
+	}
+
+	.show > .fill {
+		display: block;
+		padding: 0.5rem 0rem;
+		background-color: white;
+	}
+
+	.show:hover {
+		cursor: pointer;
+	}
+
+	.fill > p{
+		color: #664d03;
+		background-color: #fff3cd;
+		border-color: #ffecb5;
+		position: relative;
+		padding: 1rem 1rem;
+		margin: 0.5rem 0rem;
+		border: 1px solid transparent;
+		border-radius: .25rem;
+	}
+
+	.fill > input{
+		width: 250px;
+		padding: .375rem .75rem;
+		margin: 0 0.1rem 0 0;
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.5;
+		color: #212529;
+		background-color: #fff;
+		background-clip: padding-box;
+		border: 1px solid #ced4da;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		border-radius: .25rem;
+		transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	}
+
+	.fill > button{
+		display: inline-block;
+		font-weight: 400;
+		line-height: 1.5;
+		color: #212529;
+		text-align: center;
+		text-decoration: none;
+		vertical-align: middle;
+		cursor: pointer;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		user-select: none;
+		background-color: transparent;
+		border: 1px solid transparent;
+		padding: .375rem .75rem;
+		font-size: 1rem;
+		border-radius: .25rem;
+		transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+		color: #fff;
+    	background-color: #0d6efd;
+    	border-color: #0d6efd;
+	}
+
+	.number{
+		position: fixed;
+		right: 2rem;
+		bottom: 2rem;
+		color: #664d03;
+		background-color: #fff3cd;
+		border-color: #ffecb5;
+		padding: 1.5rem 2rem;
+		margin: 0.5rem 0rem;
+		border: 1px solid transparent;
+		border-radius: .25rem;
+	}
+
+	.container{
+		max-width: {{Constants.width}};
+	}
+
+	p {
+		line-height: {{Constants.height}};
+	}
+
+	.format_check_fail {
+		color: #842029;
+		background-color: #f8d7da;
+		border-color: #f5c2c7;
+		position: relative;
+		padding: 1rem 1rem;
+		margin-bottom: 1rem;
+		border: 1px solid transparent;
+		border-radius: .25rem;
+	}
+
+	a{
+		text-decoration: none;
+	}
+    .debug-info {
+        display: none;
+    }
+</style>
+
+
+
+	{{ if player.pgg_role == 'A' }}
+		<p>
+			請將選填的 {{ Constants.num_quest }} 項資料填入問題後方的空格。完成 {{ Constants.num_quest_need }} 項資料後，您可自第一個決策項目獲得 {{ Constants.a_role_payoff }} 元。
+		</p>
+		<p>
+			您選填的答案將以匿名的方式存取，但填寫的每個答案都可能被驗證。若答案與驗證方式查詢到的一致，您將額外獲得 {{ Constants.a_role_bonus }} 元。若任何一題驗證時發現錯誤，您由第一個決策項目獲得的報酬將全數歸零。為極大化實驗報酬，請照實填寫，亦可參考驗證方式查詢正確答案。
+		</p>
+		<p>
+			實驗結束前，您可於一頁面選擇是否授權實驗者使用此部分的答案。
+		</p>
+
+		<div class="number">
+			您目前已填寫 <span id="num_completed" style="color: red">0</span> 項。
+		</div>
+		<ol id="A_list"></ol>
+
+	{{ elif player.pgg_role == 'B' }}
+		<p>
+			請將其他場次中某「甲」選填的 {{ Constants.num_quest_need }} 項資料填入問題後方的空格。完成 {{ Constants.num_quest_need }} 項資料後，您可自第一個決策項目獲得 {{ Constants.b_role_payoff }} 元。
+		</p>
+		<p>
+			您的每個答案都可能被驗證。若答案與驗證方式查詢到的一致，您將額外獲得 {{ Constants.b_role_bonus }} 元。若任何一題驗證時發現錯誤，您由第一個決策項目獲得的報酬將全數歸零。為極大化實驗報酬，請完整複製貼上。
+		</p>
+
+		<div class="number">
+			您目前已填寫 <span id="num_completed" style="color: red">0</span> 項。
+		</div>
+		<ol id="B_list"></ol>
+	{{ endif }}
+
+	完成20項個資後，請點擊「下一頁」繼續本實驗。<br><br>
+	<button class="otree-btn-next btn btn-primary">下一頁</button>
+
+<!-- 點擊後顯示填寫框的效果 -->
+<script>
+var list = document.querySelector('ol');
+list.addEventListener('click', function(ev) {
+  	if (ev.target.tagName === 'LI' & ev.target.className === 'notshow') {
+
+  		var list = document.querySelectorAll('li.show');
+		for (var item of list) {
+			item.className = "notshow";
+		}
+		ev.target.className = "show";
+	}
+
+	else if (ev.target.tagName === "LI" & ev.target.className === 'show'){
+		ev.target.className = "notshow";
+	}
+}, false);
+</script>
+
+
+<!-- 動態建立「甲」、「乙」的填寫表 -->
+<script>
+for (const [no_info, value] of Object.entries(js_vars)) {
+
+	// 加上項目文字
+	var info_item = document.createElement("li");
+	info_item.className = "notshow";
+	info_item.textContent = value.info + ": ";
+
+	// 填寫的答案，填寫後顯示在項目文字後
+	var submit_ans = document.createElement("span");
+	submit_ans.textContent = '';
+	submit_ans.id = no_info + 'ans';
+
+	// format 錯誤提示訊息
+	var format_message = document.createElement("div");
+	format_message.className = "format_check_fail";
+	format_message.style.display = "none";
+	format_message.id = no_info + "format";
+
+	// 加上驗證文字
+	var p = document.createElement("p");
+	if(document.getElementById("A_list")) {
+		var txt2 = value.val;
+	}
+	else {
+		var txt2 = value.val + "「" + value.info_from_A + "」" + "<br>" + "請複製並貼上：" + value.info_from_A + "";
+	}
+	p.innerHTML = txt2;
+
+	// 建立隱藏的 <input> 填寫框
+	var input = document.createElement("input");
+	input.name = no_info; // 和 otree 的 formfileds 連結
+	input.id = no_info + 'input';
+	input.type = "hidden";
+	if(document.getElementById("A_list")){
+		input.setAttribute("placeholder", value.placeholder);
+	}
+
+	// 建立顯示的 <input> 填寫框
+	var input_show = document.createElement("input");
+	input_show.name = no_info + 'show'
+	input_show.id = no_info + 'show';
+	if(document.getElementById("A_list")){
+		input_show.setAttribute("placeholder", value.placeholder);
+	}
+
+	// 建立提交答案按鈕
+	var submit = document.createElement("button");
+	submit.name = no_info;
+	submit.textContent = '提交答案';
+
+  	// 把所有 element 接起來
+	var info_block = document.createElement("div");
+	info_block.className = "fill";
+	info_block.appendChild(format_message)
+	info_block.appendChild(p);
+
+	if (no_info == "q15"){
+		var i;
+		if (document.getElementById("A_list")) {
+			var placeholder = {"0": "e.g. myNTU臺大人入口網", "1": "e.g. 博客來-解憂雜貨店【暖心紀念版】", "2": "e.g. 歡迎使用 Colaboratory - Colaboratory"}
+		}
+		else {
+			var placeholder = {"0": "", "1": "", "2": ""}
+		}
+		for (i = 0; i < 3; i++){
+			var sub_input = document.createElement("input");
+			sub_input.id = no_info + 'input_show:' + i;
+			var br = document.createElement("br");
+			info_block.appendChild(sub_input);
+			info_block.appendChild(br)
+			sub_input.setAttribute("placeholder", placeholder[i]);
+		}
+
+		submit.onclick = function(){
+			// // 按下繳交：把繳交的答案顯示到項目後方
+			var web1 = document.getElementById('q15input_show:0').value;
+			var web2 = document.getElementById('q15input_show:1').value;
+			var web3 = document.getElementById('q15input_show:2').value;
+			web1 = web1.replace(/^\s+|\s+$/g, "");
+			web2 = web2.replace(/^\s+|\s+$/g, "");
+			web3 = web3.replace(/^\s+|\s+$/g, "");
+			var ans;
+			if (web1 !== "" && web2!== "" && web3 !== "" ) {
+				ans =  web1 + "、" + web2 + "、" + web3;
+			} else {
+				ans =  "";
+			}
+
+			document.getElementById(no_info + 'ans').textContent = ans;
+			document.getElementById("q15input").value = ans;
+
+			// 按下繳交：把繳交的答案回傳 Python，檢查格式是否正確
+			var submit_ans = new Object();
+			submit_ans["info_no"] = this.name;
+			var web = new Object();
+			web["web1"] = web1;
+			web["web2"] = web2;
+			web["web3"] = web3;
+
+			submit_ans["ans"] = web;
+			liveSend(submit_ans);
+
+	    	return false;
+	  	};
+
+	  	info_block.appendChild(input);
+		info_block.appendChild(submit);
+	}
+	else{
+		info_block.appendChild(input);
+		info_block.appendChild(input_show);
+		info_block.appendChild(submit);
+
+		submit.onclick = function(){
+			// 按下繳交：把繳交的答案顯示到項目後方
+			var tmp = document.getElementById(no_info + 'show').value;
+			document.getElementById(no_info + 'ans').textContent = tmp;
+
+			// 按下繳交：把繳交的答案回傳 Python，檢查格式是否正確
+			var submit_ans = new Object();
+			submit_ans["info_no"] = this.name;
+			submit_ans["ans"] = tmp;
+			liveSend(submit_ans);
+
+	    	return false;
+	  	};
+	}
+
+	info_item.appendChild(submit_ans);
+	info_item.appendChild(info_block);
+
+	if(document.getElementById("A_list")) {
+		var info_lst = document.getElementById('A_list');
+	}
+	else {
+		var info_lst = document.getElementById('B_list');
+	}
+
+	info_lst.appendChild(info_item);
+}
+</script>
+
+<script>
+function liveRecv(message) {
+	var format_message = document.getElementById(message["id"] + "format");
+	if (message["message"] != "pass") {
+		// 繳交「不通過」：顯示錯誤提示訊息
+		format_message.style.display = "block";
+		format_message.textContent = message["message"];
+		document.getElementById(message["id"] + 'ans').textContent = "";
+	}
+	else{
+		// 繳交「通過」：把該 block 隱藏起來
+		format_message.style.display = "none";
+		format_message.textContent = ""
+
+		var show_lst = document.querySelectorAll('li.show');
+		for (var item of show_lst) {
+			item.className = "notshow";
+		}
+		
+		if (message["id"] != "q15"){
+			$("#" + message["id"] + "input").val(message["ans"]);
+		}
+		
+	}
+
+	console.log(message);
+}
+</script>
+
+<script>
+// 禁止用 enter 鍵繳交答案
+var list = document.querySelectorAll('input');
+for (var item of list) {
+	item.addEventListener( 'keypress', function (e) {
+		if (e.key === 'Enter') {
+			e.preventDefault();
+		};
+	});
+};
+</script>
+
+<script>
+// 持續計算目前總共填了幾個
+var task_intervall = setInterval(
+	function () {
+		var counter = 0;
+		for (const [key, value] of Object.entries(js_vars)) {
+			if (document.getElementById(key + 'ans').textContent != '') {
+				counter += 1;
+			}
+		}
+		document.getElementById('num_completed').textContent = counter;
+	}, 100)
+</script>
+
+<script>
+// 當受試者點擊 next button，檢查填寫項目是否已達要求。
+var next_btn = document.querySelector('.otree-btn-next');
+next_btn.onclick = function(){
+	var counter = 0;
+	var num_q = 0
+	var check_info = "";
+	for (const [key, value] of Object.entries(js_vars)) {
+		num_q += 1;
+		if (document.getElementById(key + 'ans').textContent != '') {
+			counter += 1;
+			check_info +=  "\n" + num_q + "."+ value['info'] + ": " + document.getElementById(key + 'ans').textContent;
+		}
+	}
+
+	if (counter < {{ Constants.num_quest_need }}) {
+		alert("您目前填寫了 " + counter + " 項資料，請填寫 {{ Constants.num_quest_need }} 項資料。");
+		return false;
+	}
+	else if (counter > {{ Constants.num_quest_need }}){
+		alert("您目前填寫了 " + counter + " 項資料，請刪減至 {{ Constants.num_quest_need }} 項資料。");
+		return false;
+	}
+	else {
+		// return true;
+		var confirmResult = confirm("請確實核對您的資料，確保填寫正確。在下一頁您將沒有任何機會修改資料。若驗證時發現錯誤，您在此決策項⽬獲得的報酬將全數歸零。" + check_info);
+		// confirm原話為：請確定您填寫的資料是否正確？
+		// 如果確認結果為 true，繼續；否則，取消操作
+		return confirmResult;
+	}
+};
+</script>
+
+<script>
+	setTimeout(function(){document.querySelector('.otree-btn-next').className+= ' twinkle'}, 60000);
+</script>
+
+<style type="text/css">
+        .twinkle{
+            color: #fff;
+            border: #0d6efd;
+            animation: twinkle 1s alternate infinite;
+        }
+        @keyframes twinkle{
+			from{background: #0d6efd;}
+            to{background: #0d6dfd4f;}
+        }	
+</style>
+{{ endblock }}
+

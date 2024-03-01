@@ -1,0 +1,252 @@
+
+{{ block title }}
+    授權使用匿名資料
+{{ endblock }}
+{{ block content }}
+<style>
+.debug-info {
+    display: none;
+}
+th{
+    border: black 1px solid;
+    text-align: center;
+    padding: 0.5rem 4rem;
+}
+td{
+    border: black 1px solid;
+    text-align: center;
+    padding: 0.5rem 4rem;
+}
+.important{
+    font-weight: bolder;
+}
+
+.hidden-area{
+    display: none;
+}
+
+    .container{
+		max-width: {{Constants.width}};
+	}
+
+	p{
+		line-height: {{Constants.height}};
+	}
+</style>
+
+
+    <p>
+        現在，請您決定在下表所列的 11 個價格下，您是否同意授權實驗者將您填寫的 20 個資料項目提供給其他場次的「乙」使用。<br>
+    </p>
+    
+    <p>
+        當您確認並送出整份表格的答案後，電腦會隨機自 11 個價格中抽取一個，每個價格抽中的機會相同。實驗者將以您對抽中價格的答案處理您的 20 個資料項目。
+    </p>
+
+    <ul>
+        <li style="margin: 1rem 0rem;">
+            若您的答案為<span class="important">同意</span>，您的 20 個資料項目將提供給其他場次的「乙」使用，抽中的價格將會加入您的實驗報酬中。
+        </li>
+        <li style="margin: 1rem 0rem;">
+            若您的答案為<span class="important">不同意</span> ，您的 20 個資料項目將不會用於未來的實驗，抽中的價格不會加入您的實驗報酬中。
+        </li>
+    </ul>
+
+    <p>
+    舉例來說，若電腦抽中的價格為 $50 元，而您於 $50 元的價格下同意授權使用，您的 20 個資料項目將提供給其他場次的「乙」使用，且抽中的 $50 元報酬將會加入您的實驗報酬中；反之，若您於 $50 元不同意授權使用，您的 20 個資料項目將不會用於未來的實驗，抽中的 $50 元報酬不會加入您的實驗報酬中。
+    </p>
+    
+    <table border="1" style="margin: 1rem 0rem;">
+        <tr>
+            <th>價格</th>
+            <th>同意授權使用</th>
+            <th>不同意授權使用</th>
+        </tr>
+        <tr>
+            <td>$0</td>
+            <td><input type="radio" name="mpl_0" value="1" class="form-check-input"></td>
+            <td><input type="radio" name="mpl_0" value="0" class="form-check-input"></td>
+        </tr>
+        <tr>
+            <td>$10</td>
+            <td><input type="radio" name="mpl_10" value="1" class="form-check-input"></td>
+            <td><input type="radio" name="mpl_10" value="0" class="form-check-input"></td>
+        </tr>
+        <tr>
+            <td>$20</td>
+            <td><input type="radio" name="mpl_20" value="1" class="form-check-input"></td>
+            <td><input type="radio" name="mpl_20" value="0" class="form-check-input"></td>
+        </tr>
+        <tr>
+            <td>$30</td>
+            <td><input type="radio" name="mpl_30" value="1" class="form-check-input"></td>
+            <td><input type="radio" name="mpl_30" value="0" class="form-check-input"></td>
+        </tr>
+        <tr>
+            <td>$40</td>
+            <td><input type="radio" name="mpl_40" value="1" class="form-check-input"></td>
+            <td><input type="radio" name="mpl_40" value="0" class="form-check-input"></td>
+        </tr>
+        <tr>
+            <td>$50</td>
+            <td><input type="radio" name="mpl_50" value="1" class="form-check-input"></td>
+            <td><input type="radio" name="mpl_50" value="0" class="form-check-input"></td>
+        </tr>
+        <tr>
+            <td>$60</td>
+            <td><input type="radio" name="mpl_60" value="1" class="form-check-input"></td>
+            <td><input type="radio" name="mpl_60" value="0" class="form-check-input"></td>
+        </tr>
+        <tr>
+            <td>$70</td>
+            <td><input type="radio" name="mpl_70" value="1" class="form-check-input"></td>
+            <td><input type="radio" name="mpl_70" value="0" class="form-check-input"></td>
+        </tr>
+        <tr>
+            <td>$80</td>
+            <td><input type="radio" name="mpl_80" value="1" class="form-check-input"></td>
+            <td><input type="radio" name="mpl_80" value="0" class="form-check-input"></td>
+        </tr>
+        <tr>
+            <td>$90</td>
+            <td><input type="radio" name="mpl_90" value="1" class="form-check-input"></td>
+            <td><input type="radio" name="mpl_90" value="0" class="form-check-input"></td>
+        </tr>
+        <tr>
+            <td>$100</td>
+            <td><input type="radio" name="mpl_100" value="1" class="form-check-input"></td>
+            <td><input type="radio" name="mpl_100" value="0" class="form-check-input"></td>
+        </tr>
+    </table>
+
+    <div class="hidden-area">
+        {{ formfields }}
+    </div>
+填寫完畢後，請點擊「下一頁」繼續本實驗。<br><br>
+	<button class="otree-btn-next btn btn-primary">下一頁</button>
+
+<script>
+setInterval(
+    function processFormData() {
+        var nameElement = document.querySelector('input[name="mpl_0"]:checked').value;
+        
+        $('#id_mpl_0').val(nameElement)
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.querySelector('input[name="mpl_10"]:checked').value;
+        
+        $('#id_mpl_10').val(nameElement)
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.querySelector('input[name="mpl_20"]:checked').value;
+        
+        $('#id_mpl_20').val(nameElement)
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.querySelector('input[name="mpl_30"]:checked').value;
+        
+        $('#id_mpl_30').val(nameElement)
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.querySelector('input[name="mpl_40"]:checked').value;
+        
+        $('#id_mpl_40').val(nameElement)
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.querySelector('input[name="mpl_50"]:checked').value;
+        
+        $('#id_mpl_50').val(nameElement)
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.querySelector('input[name="mpl_60"]:checked').value;
+        
+        $('#id_mpl_60').val(nameElement)
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.querySelector('input[name="mpl_70"]:checked').value;
+        
+        $('#id_mpl_70').val(nameElement)
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.querySelector('input[name="mpl_80"]:checked').value;
+        
+        $('#id_mpl_80').val(nameElement)
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.querySelector('input[name="mpl_90"]:checked').value;
+        
+        $('#id_mpl_90').val(nameElement)
+    },
+    0.1*1000
+)
+
+setInterval(
+    function processFormData() {
+        var nameElement = document.querySelector('input[name="mpl_100"]:checked').value;
+        
+        $('#id_mpl_100').val(nameElement)
+    },
+    0.1*1000
+)
+
+</script>
+
+<script>
+$(document).bind("contextmenu copy selectstart", function(){
+    return false;
+});
+</script>
+
+<script>
+	setTimeout(function(){document.querySelector('.otree-btn-next').className+= ' twinkle'}, 60000);
+</script>
+
+<style type="text/css">
+        .twinkle{
+            color: #fff;
+            border: #0d6efd;
+            animation: twinkle 1s alternate infinite;
+        }
+        @keyframes twinkle{
+			from{background: #0d6efd;}
+            to{background: #0d6dfd4f;}
+        }	
+</style>
+
+{{ endblock }}
