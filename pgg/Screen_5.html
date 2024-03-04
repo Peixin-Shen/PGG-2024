@@ -132,6 +132,9 @@
 
 
 <script language="javascript">
+	var instruction_1_checked = false;
+	var instruction_2_checked = false;
+
 	function show_1(){		
 		if (document.getElementById("show1").textContent == "-> 點擊以展開說明"){
 			$(".instruction-1").show()
@@ -140,6 +143,7 @@
 			$(".instruction-1").hide()
 			document.getElementById("show1").textContent = "-> 點擊以展開說明"
 		}
+		instruction_1_checked = true;
 	}
 
 	function show_2(){		
@@ -150,9 +154,23 @@
 			$(".instruction-2").hide()
 			document.getElementById("show2").textContent = "-> 點擊以展開說明"
 		}
-
+		instruction_2_checked = true;
 	}
+
+	// 當受試者點擊 next button，檢查是否已經觀看兩個實驗說明。以是否曾經點擊、展開實驗說明作為判斷標準。
+	var next_btn = document.querySelector('.otree-btn-next');
+	next_btn.onclick = function(){
+		if (instruction_1_checked == false) {
+			alert("請詳細閱讀「1. 第二個決策項目：十回合的合作案」的實驗說明");
+			return false;
+		}
+		else if (instruction_2_checked == false){
+			alert("請詳細閱讀「2. 貢獻的使用方式」的實驗說明");
+			return false;
+		}
+	};
 </script>
+
 
 <script>
 $(document).bind("contextmenu copy selectstart", function(){
