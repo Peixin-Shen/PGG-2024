@@ -90,12 +90,6 @@ def creating_session(subsession:Subsession):
 class Screen1(Page):
     form_model = 'player'
     form_fields = ['mpl_0', 'mpl_10', 'mpl_20', 'mpl_30', 'mpl_40', 'mpl_50', 'mpl_60', 'mpl_70', 'mpl_80', 'mpl_90', 'mpl_100']
-
-    @staticmethod
-    def error_message(player, values):
-        print('values is', values)
-        if None in list(values.values()):
-            return '每一個價格都需選擇同意或不同意授權'
     
     @staticmethod
     def before_next_page(player, timeout_happened):

@@ -23,6 +23,13 @@ class Player(BasePlayer):
     is_dropout = models.BooleanField()
     other_member_is_dropout = models.BooleanField()
 
+    # 暫時放著
+    id_treatment = models.StringField()
+    contri_treatment = models.StringField()
+    file = models.StringField()
+    pgg_role = models.StringField()
+    # 暫時放著
+
 class Subsession(BaseSubsession):
     def pgg_role(self):
         return self.session.config['pgg_role']
@@ -52,7 +59,16 @@ class Subsession(BaseSubsession):
 
 def creating_session(subsession: Subsession):
     id_generated = subsession.gen_id_for_session()
-    
+
+    # 暫時放著
+    for player in subsession.get_players():
+        player.participant.pgg_role = player.pgg_role = subsession.pgg_role()
+        player.participant.id_treatment = player.id_treatment = subsession.id_treatment()
+        player.participant.contri_treatment = player.contri_treatment = subsession.contri_treatment()
+        player.participant.questionnaire_guess_other = False
+        player.participant.pgg_questionnaire_payoff = 0
+    # 暫時放著
+
     # 開始分配「角色」、「ID Treatment」、「Contri Treatment」
     for player in subsession.get_players():
         player.quit_id = id_generated[player.id_in_group - 1]

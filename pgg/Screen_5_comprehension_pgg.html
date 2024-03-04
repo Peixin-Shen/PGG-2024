@@ -195,7 +195,7 @@ div > label{
 
 
     <h5 style="padding: 2rem 0 0 0">
-        3. 若某一回合您的貢獻量為 7，這一系列實驗結束時，會有一位觀看者觀看您的 ID 與貢獻。以下敘述何者錯誤？
+        3. 若某一回合您的貢獻量為 7，這一系列實驗結束時，會有一位觀看者觀看您的 ID 與貢獻。以下敘述何者<u>錯誤</u>？
     </h5>
 
     <form action="check">
@@ -213,7 +213,7 @@ div > label{
     </form>
     <div class="hint hint-3">
         提示文字：<br>
-        此選項的答案錯誤。請您仔細閱讀以下文字，再重新回答問題。<br><br>
+        您的答案錯誤，請您仔細閱讀以下文字，選擇題目四個選項中何者敘述<u>錯誤</u>。<br><br>
         
         每位觀看者的實驗畫面會顯示您{{ if player.id_treatment == 'id_user' }}為自己取的 ID {{ else }}被系統分配的 ID {{ endif }}與 {{ Constants.endowment }} 張對應您某回合中 {{ Constants.endowment }} {{ if player.contri_treatment == 'money' }}個法幣{{ elif player.contri_treatment == 'own_info'}}項資料{{ else }}項資料{{ endif }}的牌卡，每張牌卡代表一{{ if player.contri_treatment == 'money' }}個法幣。{{ elif player.contri_treatment == 'own_info'}}個資料。{{ else }}個資料。{{ endif }}
 		<br>

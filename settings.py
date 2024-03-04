@@ -56,28 +56,11 @@ SESSION_CONFIGS = [
     ),
 
     dict(
-        name='questionaire',
-        app_sequence=['questionaire'],
+        name='test',
+        app_sequence=['check_in', 'mpl'],
         num_demo_participants=4,
+        pgg_role='A',
     ),
-
-    # dict(
-    #     name='mpl',
-    #     app_sequence=['mpl'],
-    #     num_demo_participants=4,
-    # ),
-
-    # dict(
-    #     name='payment',
-    #     app_sequence=['payment'],
-    #     num_demo_participants=4,
-    # ),
-
-    # dict(
-    #     name='card',
-    #     app_sequence=['card'],
-    #     num_demo_participants=4,
-    # ),
 ]
 
 ROOMS = [
@@ -96,16 +79,7 @@ ROOMS = [
         name='B_userID_otherInfo',
         display_name='B_info'
     ),
-    
-    # dict(
-    #     name='A_drop',
-    #     display_name="A_drop"
-    # ),
 
-    # dict(
-    #     name='B_drop',
-    #     display_name="B_drop"
-    # ),
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs

@@ -4,9 +4,9 @@
 {{ endblock }}
 {{ block content }}
 <style>
-.debug-info {
+/* .debug-info {
     display: none;
-}
+} */
 th{
     border: black 1px solid;
     text-align: center;
@@ -127,6 +127,27 @@ td{
 	<button class="otree-btn-next btn btn-primary">下一頁</button>
 
 <script>
+
+// 當受試者點擊 next button，檢查每一個價格是否都有選擇同意或不同意授權
+var next_btn = document.querySelector('.otree-btn-next');
+	next_btn.onclick = function(){
+        var mpl_0 = $('input[name="mpl_0"]:checked').val()
+        var mpl_10 = $('input[name="mpl_10"]:checked').val()
+        var mpl_20 = $('input[name="mpl_20"]:checked').val()
+        var mpl_30 = $('input[name="mpl_30"]:checked').val()
+        var mpl_40 = $('input[name="mpl_40"]:checked').val()
+        var mpl_50 = $('input[name="mpl_50"]:checked').val()
+        var mpl_60 = $('input[name="mpl_60"]:checked').val()
+        var mpl_70 = $('input[name="mpl_70"]:checked').val()
+        var mpl_80 = $('input[name="mpl_80"]:checked').val()
+        var mpl_90 = $('input[name="mpl_90"]:checked').val()
+        var mpl_100 = $('input[name="mpl_100"]:checked').val()
+        if (mpl_0 == null || mpl_10 == null || mpl_20 == null || mpl_30 == null || mpl_40 == null || mpl_50 == null || mpl_60 == null || mpl_70 == null || mpl_80 == null || mpl_90 == null || mpl_100 == null) {
+            alert("每一個價格都需選擇同意或不同意授權")
+            return false;
+        }
+	};
+
 setInterval(
     function processFormData() {
         var nameElement = document.querySelector('input[name="mpl_0"]:checked').value;
