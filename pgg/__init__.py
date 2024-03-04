@@ -40,11 +40,11 @@ class Constants(BaseConstants):
 
     info_ques_lst = ["q" + str(i) for i in range(1, num_quest + 1)]
 
-    with open('./html_txt/A_info_ques_dct.json', 'r', encoding='utf-8') as f1:
+    with open('./html_txt/A_info_ques_dct_2.json', 'r', encoding='utf-8') as f1:
         A_info_ques_dct = json.load(f1)
     f1.close
 
-    with open('./html_txt/B_info_ques_dct.json', 'r', encoding='utf-8') as f2:
+    with open('./html_txt/B_info_ques_dct_2.json', 'r', encoding='utf-8') as f2:
         B_info_ques_dct = json.load(f2)
     f2.close
 
@@ -167,7 +167,8 @@ def creating_session(subsession: Subsession):
         player.participant.pgg_role = player.pgg_role = subsession.pgg_role()
         player.participant.id_treatment = player.id_treatment = subsession.id_treatment()
         player.participant.contri_treatment = player.contri_treatment = subsession.contri_treatment()
-
+        player.participant.questionnaire_guess_other = False
+        player.participant.pgg_questionnaire_payoff = 0
         # 若 ID Treatment 為系統分配，在此進行分配。
         if subsession.id_treatment() == 'id_sys':
             player.participant.pgg_id = id_generated[player.id_in_group - 1]
@@ -223,65 +224,105 @@ def check_user_id_is_unique(entered_id, player: Player):
                 return True
         f2.close()
 
+# 供 check_info_format() 用來檢查回傳的值是不是正數
+def is_positive_number(text):
+    try:
+        num = float(text)
+        if num >= 0:
+            return True
+    except:
+        pass
+    try:
+        num = int(text)
+        if num >= 0:
+            return True
+    except:
+        pass
+    return False
 
 # 個資檢查函數 for 甲：確保甲填寫的格式符合要求
 def check_info_format(info_id, submit_ans):
     if submit_ans == "":
         return "pass"
-
-    # 視力（左/右）
+    
+    # 姓名中的任一字
     if info_id == "q1":
-        try:
-            left, right = submit_ans.split("/")
-        except:
-            return "請以「斜線」分隔左、右眼視力"
-
-        error_message = "左、右眼視力的格式錯誤"
-        try:
-            left_digit, left_decimal = left.split(".")
-            right_digit, right_decimal = right.split(".")
-        except:
-            return error_message
-        if len(left_digit) != 1 or len(left_decimal) != 1 or len(right_digit) != 1 or len(
-                right_decimal) != 1 or not left_digit.isdigit() or not left_decimal.isdigit() or not right_digit.isdigit() or not right_decimal.isdigit() or "-" in submit_ans:
-            return error_message
-    # 血壓（收縮壓和舒張壓）
+        pass
+    # 性別
     elif info_id == "q2":
-        try:
-            low, high = submit_ans.split("/")
-        except:
-            return "請以「斜線」分隔收縮壓和舒張壓"
-
-        error_message = "收縮壓和舒張壓皆需為正整數"
-        if not low.isdigit() or not high.isdigit() or "-" in submit_ans:
-            return error_message
-    # 身高
-    elif info_id == "q3":
-        error_message = "身高必須為數字"
-        if not submit_ans.isdigit() and "." not in submit_ans:
-            return error_message
-        elif "-" in submit_ans:
-            return error_message
-    # 齲齒:
-    elif info_id == "q4":
-        error_message = "答案必須為「有」或「無」"
-        if submit_ans != "有" and submit_ans != "無":
-            return error_message
-    # 牙結石:
-    elif info_id == "q5":
-        error_message = "答案必須為「有」或「無」"
-        if submit_ans != "有" and submit_ans != "無":
-            return error_message
-    # 性別：
-    elif info_id == "q6":
         error_message = "答案必須為「M」或「F」"
         if submit_ans != "M" and submit_ans != "F":
             return error_message
-    # 姓氏
+    # 身高
+    elif info_id == "q3":
+        error_message = "身高必須為數字或無資料"
+        if not is_positive_number(submit_ans) and submit_ans != '無資料':
+            return error_message
+        # if not submit_ans.isdigit() and "." not in submit_ans:
+        #     return error_message
+        # elif "-" in submit_ans:
+        #     return error_message
+
+    elif info_id == "q4":
+        error_message = "脈搏必須為數字或無資料"
+        if not is_positive_number(submit_ans) and submit_ans != '無資料':
+            return error_message
+        
+    # 血壓（收縮壓和舒張壓）
+    elif info_id == "q5":
+        if submit_ans != '無資料':
+            try:
+                low, high = submit_ans.split("/")
+            except:
+                return "請以「斜線」分隔收縮壓和舒張壓，收縮壓和舒張壓皆需為正整數。若血壓無資料請填寫「無資料」。"
+
+            error_message = "收縮壓和舒張壓皆需為正整數"
+            if not low.isdigit() or not high.isdigit() or "-" in submit_ans:
+                return error_message
+
+    # 視力（左/右）
+    elif info_id == "q6":
+        if submit_ans != '無資料':
+            try:
+                left, right = submit_ans.split("/")
+            except:
+                return "請以「斜線」分隔左、右眼視力。若視力無資料請填寫「無資料」。"
+
+            error_message = "左、右眼視力的格式錯誤"
+            try:
+                left_digit, left_decimal = left.split(".")
+                right_digit, right_decimal = right.split(".")
+            except:
+                return error_message
+            if len(left_digit) != 1 or len(left_decimal) != 1 or len(right_digit) != 1 or len(
+                    right_decimal) != 1 or not left_digit.isdigit() or not left_decimal.isdigit() or not right_digit.isdigit() or not right_decimal.isdigit() or "-" in submit_ans:
+                return error_message
+    # 血紅素HB
     elif info_id == "q7":
-        pass
-    # 身分證第一碼（英文字母）
+        error_message = "血紅素HB 必須為數字或無資料"
+        if not is_positive_number(submit_ans) and submit_ans != '無資料':
+            return error_message
+    
+    # 總膽固醇T-CHOL
     elif info_id == "q8":
+        error_message = "總膽固醇T-CHOL 必須為數字或無資料"
+        if not is_positive_number(submit_ans) and submit_ans != '無資料':
+            return error_message
+        
+    # 三酸甘油酯TG
+    elif info_id == "q9":
+        error_message = "三酸甘油酯TG 必須為數字或無資料"
+        if not is_positive_number(submit_ans) and submit_ans != '無資料':
+            return error_message
+        
+    # 空腹血糖SUG
+    elif info_id == "q10":
+        error_message = "空腹血糖SUG 必須為數字或無資料"
+        if not is_positive_number(submit_ans) and submit_ans != '無資料':
+            return error_message
+
+    # 身分證第一碼（英文字母）
+    elif info_id == "q11":
         error_message = "答案的長度需為一"
         if len(submit_ans) != 1:
             return error_message
@@ -291,7 +332,7 @@ def check_info_format(info_id, submit_ans):
             return error_message
 
     # 身分證後三碼
-    elif info_id == "q9":
+    elif info_id == "q12":
         error_message = "身分證後三碼必須為數字"
         if not submit_ans.isdigit() or "-" in submit_ans:
             return error_message
@@ -299,13 +340,15 @@ def check_info_format(info_id, submit_ans):
         error_message = "答案的長度需為三"
         if len(submit_ans) != 3:
             return error_message
+        
     # 婚姻狀態
-    elif info_id == "q10":
+    elif info_id == "q13":
         error_message = "答案必須為「未婚」、「已婚」、「配偶歿」"
         if submit_ans != "未婚" and submit_ans != "已婚" and submit_ans != "配偶歿":
             return error_message
+        
     # 生日
-    elif info_id == "q11":
+    elif info_id == "q14":
         error_message = "請以「斜線」分隔收縮壓和舒張壓"
         try:
             month, day = submit_ans.split("/")
@@ -315,16 +358,19 @@ def check_info_format(info_id, submit_ans):
         error_message = "月份和日期皆須為數字"
         if not month.isdigit() or not day.isdigit() or "-" in submit_ans:
             return error_message
+        
     # 母親姓氏
-    elif info_id == "q12":
+    elif info_id == "q15":
         pass
+
     # 身分證上地址的里
-    elif info_id == "q13":
+    elif info_id == "q16":
         error_message = "答案請以「村」、「里」結尾"
         if submit_ans[-1] != "村" and submit_ans[-1] != "里":
             return error_message
+        
     # 手機末三碼
-    elif info_id == "q14":
+    elif info_id == "q17":
         error_message = "手機末三碼必須為數字"
         for number in submit_ans:
             if not number.isdigit():
@@ -333,13 +379,15 @@ def check_info_format(info_id, submit_ans):
         error_message = "答案的長度需為三"
         if len(submit_ans) != 3:
             return error_message
+        
     # 瀏覽器最近關閉的3個分頁名稱（非連結）
-    elif info_id == "q15":
+    elif info_id == "q18":
         error_message = "三個欄位都需要填寫"
         if submit_ans["web1"] == "" or submit_ans["web2"] == "" or submit_ans["web3"] == "":
             return error_message
+        
     # 當前位置（經緯度）
-    elif info_id == "q16":
+    elif info_id == "q19":
         error_message = "請以「逗點」分隔經度和緯度"
         try:
             latitude, longitude = submit_ans.split(",")
@@ -347,41 +395,33 @@ def check_info_format(info_id, submit_ans):
             return error_message
 
     # 一部最近瀏覽/按讚的Youtube影片或一位訂閱的youtuber
-    elif info_id == "q17":
-        pass
-    # 最近一學期，週三週四下午的任一門課
-    elif info_id == "q18":
-        pass
-    # 入學至今一門停修的課（從未停修請填無）
-    elif info_id == "q19":
-        pass
-    # 任一兩個月內發票的消費金額
     elif info_id == "q20":
+        pass
+
+    # 最近一學期，週三週四下午的任一門課
+    elif info_id == "q21":
+        pass
+
+    # 入學至今一門停修的課（從未停修請填無）
+    elif info_id == "q22":
+        pass
+
+    # 任一兩個月內發票的消費金額
+    elif info_id == "q23":
         error_message = "消費金額必須為數字"
         if not submit_ans.isdigit() or "-" in submit_ans:
             return error_message
+        
     # 手機型號（廠牌及機型）
-    elif info_id == "q21":
-        pass
-    # 是否使用助學貸款
-    elif info_id == "q22":
-        error_message = "答案必須為「是」、「否」"
-        if submit_ans != "是" and submit_ans != "否":
-            return error_message
-    # 是否曾接受新冠肺炎檢測
-    elif info_id == "q23":
-        error_message = "答案必須為「是」、「否」"
-        if submit_ans != "是" and submit_ans != "否":
-            return error_message
-    # 是否接種新冠肺炎疫苗
     elif info_id == "q24":
-        error_message = "答案必須為「是」、「否」"
-        if submit_ans != "是" and submit_ans != "否":
-            return error_message
-    # 就醫紀錄中的一個醫院名稱
-    elif info_id == "q25":
         pass
 
+    # 是否使用助學貸款
+    elif info_id == "q25":
+        error_message = "答案必須為「是」、「否」"
+        if submit_ans != "是" and submit_ans != "否":
+            return error_message
+        
     return "pass"
 
 

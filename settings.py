@@ -56,30 +56,10 @@ SESSION_CONFIGS = [
     ),
 
     dict(
-        name='test_B_userID_otherInfo',
+        name='questionaire',
         app_sequence=['questionaire'],
-        num_demo_participants=16,
-        pgg_role='B',
-        id_treatment='id_user',
-        contri_treatment='other_info',
+        num_demo_participants=4,
     ),
-
-    # dict(
-    #     name='A_drop',
-    #     app_sequence=['A_drop'],
-    #     num_demo_participants=16,
-    # ),
-
-    # dict(
-    #     name='B_drop',
-    #     app_sequence=['B_drop'],
-    #     num_demo_participants=16,
-    # ),
-    # dict(
-    #     name='questionaire',
-    #     app_sequence=['questionaire'],
-    #     num_demo_participants=4,
-    # ),
 
     # dict(
     #     name='mpl',
@@ -177,6 +157,10 @@ PARTICIPANT_FIELDS = dict(
     wait_for_15_mins = bool(),
     is_dropout = bool(),
     other_member_is_dropout = bool(),
+    all_contribution = str(),
+    all_contributions_dict = str(),
+    pgg_questionnaire_payoff = float(),
+    questionnaire_guess_other = bool(),
 )
 
 SESSION_FIELDS = []

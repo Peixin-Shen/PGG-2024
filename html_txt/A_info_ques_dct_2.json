@@ -1,0 +1,152 @@
+{
+	"q1": {
+		"info": "姓名中的任一字",
+		"info_short": "姓名中的任一字",
+		"val": "請依「<a href='https://my.ntu.edu.tw/' target='_blank'>myNTU 臺大人入口網</a>」中的「學生專區 > 個人資訊 > <a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=under' target='_blank'>學士班健檢資訊</a>或<a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=grad' target='_blank'>碩博班健檢資訊</a> > 體檢結果查詢」填寫。<br><br>範例：若您的體檢報告中，姓名欄為王小明，您可於作答框選擇作答「王」、「小」、「明」中任一者。<br><br>驗證時須出示該網頁以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. 明"
+	},
+	"q2": {
+		"info": "性別",
+		"info_short": "性別",
+		"val": "請依「<a href='https://my.ntu.edu.tw/' target='_blank'>myNTU 臺大人入口網</a>」中的「學生專區 > 個人資訊 > <a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=under' target='_blank'>學士班健檢資訊</a>或<a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=grad' target='_blank'>碩博班健檢資訊</a> > 體檢結果查詢」填寫。<br><br>範例：若您的體檢報告中，性別欄位為 M ，請於作答框填寫 M；若為 F，請填寫 F。<br><br>驗證時須出示該網頁以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": " e.g. F"
+	},
+	"q3": {
+		"info": "身高",
+		"info_short": "身高",
+		"val": "請依「<a href='https://my.ntu.edu.tw/' target='_blank'>myNTU 臺大人入口網</a>」中的「學生專區 > 個人資訊 > <a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=under' target='_blank'>學士班健檢資訊</a>或<a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=grad' target='_blank'>碩博班健檢資訊</a> > 體檢結果查詢」填寫。<br><br>範例：若您的體檢報告中，身高(cm)為 173.5，請您於作答框內填寫 173.5。若此項無資料，請您於作答框內填寫「無資料」。<br><br>驗證時須出示該網頁以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. 173.5"
+	},
+	"q4": {
+		"info": "脈搏（次/min）",
+		"info_short": "脈搏",
+		"val": "請依「<a href='https://my.ntu.edu.tw/' target='_blank'>myNTU 臺大人入口網</a>」中的「學生專區 > 個人資訊 > <a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=under' target='_blank'>學士班健檢資訊</a>或<a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=grad' target='_blank'>碩博班健檢資訊</a> > 體檢結果查詢」填寫。<br><br>範例：若您的體檢報告中，脈搏(次/min)為 75，請您於作答框內填寫 75。若此項無資料，請您於作答框內填寫「無資料」。<br><br>驗證時須出示該網頁以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. 75"
+	},
+	"q5": {
+		"info": "血壓（收縮壓/舒張壓）",
+		"info_short": "血壓",
+		"val": "請依「<a href='https://my.ntu.edu.tw/' target='_blank'>myNTU 臺大人入口網</a>」中的「學生專區 > 個人資訊 > <a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=under' target='_blank'>學士班健檢資訊</a>或<a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=grad' target='_blank'>碩博班健檢資訊</a> > 體檢結果查詢」填寫。<br><br>範例：若您的體檢報告中，血壓(mmHg)為 112/61，請您於作答框內填寫 112/61。若此項無資料，請您於作答框內填寫「無資料」。<br><br>驗證時須出示該網頁以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. 112/61"
+	},
+	"q6": {
+		"info": "視力（左/右）",
+		"info_short": "視力",
+		"val": "請依「<a href='https://my.ntu.edu.tw/' target='_blank'>myNTU 臺大人入口網</a>」中的「學生專區 > 個人資訊 > <a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=under' target='_blank'>學士班健檢資訊</a>或<a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=grad' target='_blank'>碩博班健檢資訊</a> > 體檢結果查詢」填寫。請於「裸視視力」與「矯正視力」中擇一進行填寫即可，左、右眼的視力請以斜線分隔。<br><br>範例：若您的體檢報告中，右眼矯正視力為 0.4、左眼矯正視力為 0.8，請您於作答框內填寫 0.4/0.8。若此項無資料，請您於作答框內填寫「無資料」。<br><br>驗證時須出示該網頁以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. 0.4/0.8"
+	},
+	"q7": {
+		"info": "血紅素HB（g/dL）",
+		"info_short": "血紅素HB",
+		"val": "請依「<a href='https://my.ntu.edu.tw/' target='_blank'>myNTU 臺大人入口網</a>」中的「學生專區 > 個人資訊 > <a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=under' target='_blank'>學士班健檢資訊</a>或<a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=grad' target='_blank'>碩博班健檢資訊</a> > 體檢結果查詢」填寫。<br><br>範例：若您的體檢報告中，血紅素HB(g/dL)為 12.5，請您於作答框內填寫 12.5。若此項無資料，請您於作答框內填寫「無資料」。<br><br>驗證時須出示該網頁以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. 12.5"
+	},
+	"q8": {
+		"info": "總膽固醇T-CHOL（mg/dL）",
+		"info_short": "總膽固醇T-CHOL",
+		"val": "請依「<a href='https://my.ntu.edu.tw/' target='_blank'>myNTU 臺大人入口網</a>」中的「學生專區 > 個人資訊 > <a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=under' target='_blank'>學士班健檢資訊</a>或<a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=grad' target='_blank'>碩博班健檢資訊</a> > 體檢結果查詢」填寫。<br><br>範例：若您的體檢報告中，總膽固醇T-CHOL(mg/dL)為 165，請您於作答框內填寫 165。若此項無資料，請您於作答框內填寫「無資料」。<br><br>驗證時須出示該網頁以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. 165"
+	},
+	"q9": {
+		"info": "三酸甘油酯TG（mg/dL）",
+		"info_short": "三酸甘油酯TG",
+		"val": "請依「<a href='https://my.ntu.edu.tw/' target='_blank'>myNTU 臺大人入口網</a>」中的「學生專區 > 個人資訊 > <a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=under' target='_blank'>學士班健檢資訊</a>或<a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=grad' target='_blank'>碩博班健檢資訊</a> > 體檢結果查詢」填寫。<br><br>範例：若您的體檢報告中，三酸甘油酯TG(mg/dL)為 61，請您於作答框內填寫 61。若此項無資料，請您於作答框內填寫「無資料」。<br><br>驗證時須出示該網頁以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. 61"
+	},
+	"q10": {
+		"info": "空腹血糖SUG（mg/dL）",
+		"info_short": "空腹血糖SUG",
+		"val": "請依「<a href='https://my.ntu.edu.tw/' target='_blank'>myNTU 臺大人入口網</a>」中的「學生專區 > 個人資訊 > <a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=under' target='_blank'>學士班健檢資訊</a>或<a href='https://my.ntu.edu.tw/newhc/studefault.aspx?p=grad' target='_blank'>碩博班健檢資訊</a> > 體檢結果查詢」填寫。<br><br>範例：若您的體檢報告中，空腹血糖SUG(mg/dL)為 86，請您於作答框內填寫 86。若此項無資料，請您於作答框內填寫「無資料」。<br><br>驗證時須出示該網頁以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. 86"
+	},
+	"q11": {
+		"info": "身分證第一碼（英文字母）",
+		"info_short": "身分證<br>第一碼",
+		"val": "請依身分證上資訊填寫。<br><br>範例：若您的身分證號碼為 A123456789，請於作答框填寫 A。<br><br>驗證時須出示身份證以供查驗，請確保您填寫的資料與其一致。",
+		"placeholder": "e.g. A"
+	},
+	"q12": {
+		"info": "身分證後三碼",
+		"info_short": "身分證<br>後三碼",
+		"val": "請依身分證上資訊填寫。<br><br>範例：若您的身分證號碼為 A123456789，請於作答框填寫 789。<br><br>驗證時須出示身份證以供查驗，請確保您填寫的資料與其一致。",
+		"placeholder": "e.g. 789"
+	},
+	"q13": {
+		"info": "婚姻狀況",
+		"info_short": "婚姻狀況",
+		"val": "請依身分證上資訊填寫。<br><br>範例：若您的配偶欄為空白，請於作答框填寫「未婚」；反之請照自身狀況填寫「已婚」或是「配偶歿」。<br><br>驗證時須出示身份證以供查驗，請確保您填寫的資料與其一致。",
+		"placeholder": "e.g. 未婚"
+	},
+	"q14": {
+		"info": "生日（不包含年）",
+		"info_short": "生日",
+		"val": "請依身分證上資訊填寫，月份與日期請以斜線分隔。<br><br>範例：若您於民國 88 年 8 月 31 日出生，請於作答框填寫 8/31。<br><br>驗證時須出示身份證以供查驗，請確保您填寫的資料與其一致。",
+		"placeholder": "e.g. 8/31"
+	},
+	"q15": {
+		"info": "母親姓氏",
+		"info_short": "母親姓氏",
+		"val": "請依身分證上資訊填寫。<br><br>範例：若您的母親姓名為陳大華，請於作答框填寫「陳」。<br><br>驗證時須出示身份證以供查驗，請確保您填寫的資料與其一致。",
+		"placeholder": "e.g. 陳"
+	},
+	"q16": {
+		"info": "身分證上地址的里或村",
+		"info_short": "身分證上<br>地址的里或村",
+		"val": "請依身分證上資訊填寫，請以村或里結尾。<br><br>範例：若您戶籍地址上的里為仁愛里，請於填寫框中填寫「仁愛里」；若您戶籍地址上的村為萬安村，請填寫「萬安村」<br><br>驗證時須出示身份證以供查驗，請確保您填寫的資料與其一致。",
+		"placeholder": "e.g. 仁愛里"
+	},
+	"q17": {
+		"info": "手機末三碼",
+		"info_short": "手機末三碼",
+		"val": "請填寫本人手機後三碼。<br><br>範例：若您的手機號碼為 0912345678，請於填寫框中填寫 678<br><br>驗證時須提供完整手機號碼，實驗方將傳送驗證簡訊，請依照指示回報簡訊驗證碼以供查驗。",
+		"placeholder": "e.g. 678"
+	},
+	"q18": {
+		"info": "瀏覽器最近關閉的3個分頁名稱（非連結）",
+		"info_short": "瀏覽器<br>最近關閉的<br>3個分頁",
+		"val": "請開啟瀏覽器並點擊<ul><li>Chrome：歷史紀錄 > 最近關閉的分頁</li><li>Safari：瀏覽紀錄 > 最近關閉的項目</li></ul> <br>範例：若您最近關閉的三個分頁為「myNTU臺大人入口網」、「博客來-解憂雜貨店【暖心紀念版】」、「歡迎使用 Colaboratory - Colaboratory」，請於填寫框依序填寫此三個網頁名稱<br><br>驗證時須出示填寫的網頁名稱，請確保您填寫的資料與該結果一致。",
+		"placeholder": ""
+	},
+	"q19": {
+		"info": "當前位置（經緯度）",
+		"info_short": "當前位置<br>（經緯度）",
+		"val": "請開啟電腦版 <a href='https://www.google.com.tw/maps/' target='_blank'>Google Map</a>，在定位上點擊右鍵，點擊即可複製經緯度，並直接貼上。<br>若電腦無法定位，請開啟手機版 Google Map。在目前位置長按以放置圖釘，並於「總覽」向下滑動，便會顯示經緯度 （請完整填寫）。<br><br>範例：若您目前的經緯度為 25.020489, 121.542050，請於填寫框中填寫 25.020489, 121.542050。<br><br>驗證時須出示 Google Map 當前位置以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. 25.020489, 121.542050"
+	},
+	"q20": {
+		"info": "一部最近瀏覽或按讚的 Youtube 影片或一個訂閱的 Youtube 頻道",
+		"info_short": "瀏覽或按讚的 Youtube 影片或<br>Youtube 頻道",
+		"val": "請開啟<a href='https://www.youtube.com/' target='_blank'>Youtube</a>，提供一部最近瀏覽或按讚的 Youtube 影片或一個訂閱的 Youtube 頻道。<br><br>範例：若您最近按讚的 Youtube 影片為「Jay Chou周杰倫【晴天 Sunny Day】-Official Music Video」，請在填寫框中填寫此影片名稱。 <br><br>驗證時須出示 Youtube 以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. Jay Chou周杰倫【晴天 Sunny Day】-Official Music Video"
+	},
+	"q21": {
+		"info": "最近一學期，週三週四下午的任一門課（若週三週四下午皆無課請填無）",
+		"info_short": "最近一學期<br>週三週四下午的<br>任一門課",
+		"val": "請依「<a href='https://my.ntu.edu.tw/' target='_blank'>myNTU 臺大人入口網</a>」中的「課程學習 > <a href='https://if177.aca.ntu.edu.tw/index.php' target='_blank'>選課結果查詢</a>」填寫。<br><br>範例：若您最近一學期，週三下午的課為「個體經濟學上」，請在填寫框中填寫此課程名稱。<br><br>驗證時須出示該網頁以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. 個體經濟學上"
+	},
+	"q22": {
+		"info": "入學至今一門停修的課（從未停修請填無）",
+		"info_short": "入學至今<br>一門停修的課",
+		"val": "請依「<a href='https://my.ntu.edu.tw/' target='_blank'>myNTU 臺大人入口網</a>」中的「課程學習 > <a href='https://reg227.aca.ntu.edu.tw/GRC/login.php' target='_blank'>學士班修課檢視表</a>」填寫。<br><br>範例：若您入學至今，曾經停修的課為「微積分4」，請在填寫框中填寫此課程名稱。<br><br>驗證時須出示該網頁以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. 微積分4"
+	},
+	"q23": {
+		"info": "任一兩個月內發票的消費金額",
+		"info_short": "發票的<br>消費金額",
+		"val": "您可選填紙本發票或手機載具之任一消費紀錄金額。<br><br>範例：若您兩個月內任一發票的消費金額為 1099 元，請於填寫框中填寫 1099 。<br><br>驗證時：<br><ul><li>若您填寫紙本發票之消費紀錄金額，須出示紙本發票以供查驗；</li><li>若您填寫手機載具之消費紀錄金額，須出示載具紀錄以供查驗。</li></ul>",
+		"placeholder": "e.g. 1099"
+	},
+	"q24": {
+		"info": "手機型號（廠牌及機型）",
+		"info_short": "手機型號",
+		"val": "請開啟手機，並依以下流程查看並填寫手機型號。<br><ul><li>Apple：設定 > 一般 > 關於本機</li><li>Android（部分機型可能不同）：設定 > 系統 > 關於手機 >  型號</li></ul><br>範例：若您的手機型號為 iPhone XR，請在填寫框中填寫 iPhone XR。<br><br>驗證時須出示該畫面以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. iPhone XR"
+	},
+	"q25": {
+		"info": "是否使用助學貸款",
+		"info_short": "是否使用<br>助學貸款",
+		"val": "請填寫是否使用助學貸款，可由「<a href='https://my.ntu.edu.tw/' target='_blank'>myNTU 臺大人入口網</a>」中的「學生專區 > 個人資訊 > <a href='https://mis.cc.ntu.edu.tw/reg/' target='_blank'>學雜分費繳費及證明</a>  > 109 學年度第二學期學雜費繳費明細表」檢視。<br>若有使用助學貸款，「應繳費用明細」有括號「可貸」的項目，金額會顯示為 0 元。<br><br>範例：若您有使用就學貸款，請於填寫框中填寫「是」；反之請填寫「否」。<br><br>驗證時須出示該畫面以供查驗，請確保您填寫的資料與該結果一致。",
+		"placeholder": "e.g. 否"
+	}
+}

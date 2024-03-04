@@ -1,6 +1,6 @@
 
 {{ block title }}
-	第二階段：合作案完成
+	第二階段：完成
 {{ endblock }}
 
 {{ block content }}
@@ -18,13 +18,21 @@
 </style>
 
 	<p>
-		第二個決策項目結束
+		第二階段結束
 	</p>
-	<p>
-		恭喜！您在此決策項目總共賺了 {{ pgg_total_payoff }} 元。
+
+	{{ if questionnaire_guess_other == True }}
+    <p>
+		您在第二階段問卷總共猜中 {{ correct_count }} 項，賺了 {{ pgg_questionnaire_payoff }} 元。
 	</p>
+	{{ endif }}
 	
-	請點擊「下一頁」繼續本實驗。<br><br>
+	<p>
+    請點擊「下一頁」繼續本實驗。
+	</p>
+    
+	<br><br>
+	
 	<button class="otree-btn-next btn btn-primary">下一頁</button>
 
 <script>

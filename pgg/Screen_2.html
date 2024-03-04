@@ -248,7 +248,7 @@ for (const [no_info, value] of Object.entries(js_vars)) {
 	info_block.appendChild(format_message)
 	info_block.appendChild(p);
 
-	if (no_info == "q15"){
+	if (no_info == "q18"){
 		var i;
 		if (document.getElementById("A_list")) {
 			var placeholder = {"0": "e.g. myNTU臺大人入口網", "1": "e.g. 博客來-解憂雜貨店【暖心紀念版】", "2": "e.g. 歡迎使用 Colaboratory - Colaboratory"}
@@ -267,9 +267,9 @@ for (const [no_info, value] of Object.entries(js_vars)) {
 
 		submit.onclick = function(){
 			// // 按下繳交：把繳交的答案顯示到項目後方
-			var web1 = document.getElementById('q15input_show:0').value;
-			var web2 = document.getElementById('q15input_show:1').value;
-			var web3 = document.getElementById('q15input_show:2').value;
+			var web1 = document.getElementById('q18input_show:0').value;
+			var web2 = document.getElementById('q18input_show:1').value;
+			var web3 = document.getElementById('q18input_show:2').value;
 			web1 = web1.replace(/^\s+|\s+$/g, "");
 			web2 = web2.replace(/^\s+|\s+$/g, "");
 			web3 = web3.replace(/^\s+|\s+$/g, "");
@@ -281,7 +281,7 @@ for (const [no_info, value] of Object.entries(js_vars)) {
 			}
 
 			document.getElementById(no_info + 'ans').textContent = ans;
-			document.getElementById("q15input").value = ans;
+			document.getElementById("q18input").value = ans;
 
 			// 按下繳交：把繳交的答案回傳 Python，檢查格式是否正確
 			var submit_ans = new Object();
@@ -353,7 +353,7 @@ function liveRecv(message) {
 			item.className = "notshow";
 		}
 		
-		if (message["id"] != "q15"){
+		if (message["id"] != "q18"){
 			$("#" + message["id"] + "input").val(message["ans"]);
 		}
 		

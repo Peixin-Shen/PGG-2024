@@ -53,6 +53,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+
     sex = models.StringField()
 
     age = models.IntegerField(
@@ -98,8 +99,6 @@ class Player(BasePlayer):
     svo_mine_6 = models.IntegerField()
     svo_other_6 = models.IntegerField()
 
-
-# PAGES
 
 class redirect_page(Page):
     @staticmethod

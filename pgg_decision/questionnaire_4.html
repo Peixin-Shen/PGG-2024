@@ -1,0 +1,180 @@
+
+{{ block title }}
+第二階段：問卷
+{{ endblock }}
+{{ block content }}
+<style>
+.debug-info {
+  display: none;
+}
+
+.line{
+    border-bottom: black 1px solid;
+    margin: 25px 0px;
+}
+
+.question{margin-top: 40px;}
+
+.col-form-label{
+    display: none;
+}
+.form-control{
+    margin-left: 4rem;
+}
+</style>
+
+    
+
+    <p>
+        ⼗回合的合作案中，您的組員曾經 <u><b>增加</b></u> 貢獻量，請猜測以下原因在多大程度上影響您組員的貢獻量？<br>
+    </p>
+    <p style="color: gray;">
+        電腦將比較您的猜測與其他組員之前答案的平均（四捨五入），每項一致的答案可多得5元
+    </p>
+    <br>
+    
+    <div class="line"></div>
+
+    <div class="question">
+        <p>1. 他們後來意識到{{ if player.contri_treatment == 'money' }}法幣{{ else }}資料{{ endif }}對他們沒這麼重要</p>
+    <table>
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td></td>
+            {% for label in form.level_guess_increasing_1.choices %}
+                <td style="text-align: center; width: 2.5em; color: gray;">{{ label }}</td>
+            {% endfor %}
+            <td></td>
+        </tr>
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>不影響&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            {% for radio in form.level_guess_increasing_1 %}
+                <td style="text-align: center;">{{ radio }}</td>
+            {% endfor %}
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;影響很大</td>
+        </tr>
+    </table>
+    </div>
+
+
+    <div class="question">
+        <p>2. 他們後來意識到{{ if player.contri_treatment == 'money' }}法幣{{ else }}資料{{ endif }}對其他人來說很重要</p>
+        <table>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td></td>
+                {% for label in form.level_guess_increasing_2.choices %}
+                    <td style="text-align: center; width: 2.5em; color: gray;">{{ label }}</td>
+                {% endfor %}
+                <td></td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>不影響&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                {% for radio in form.level_guess_increasing_2 %}
+                    <td style="text-align: center;">{{ radio }}</td>
+                {% endfor %}
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;影響很大</td>
+            </tr>
+        </table>
+        </div> 
+    
+        <div class="question">
+            <p>3. {{ form.level_guess_increasing_3.label }}</p>
+            <table>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td></td>
+                    {% for label in form.level_guess_increasing_3.choices %}
+                        <td style="text-align: center; width: 2.5em; color: gray;">{{ label }}</td>
+                    {% endfor %}
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>不影響&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    {% for radio in form.level_guess_increasing_3 %}
+                        <td style="text-align: center;">{{ radio }}</td>
+                    {% endfor %}
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;影響很大</td>
+                </tr>
+            </table>
+            </div> 
+
+
+            <div class="question">
+                <p>4. {{ form.level_guess_increasing_4.label }}</p>
+                <table>
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td></td>
+                        {% for label in form.level_guess_increasing_4.choices %}
+                            <td style="text-align: center; width: 2.5em; color: gray;">{{ label }}</td>
+                        {% endfor %}
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td>不影響&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        {% for radio in form.level_guess_increasing_4 %}
+                            <td style="text-align: center;">{{ radio }}</td>
+                        {% endfor %}
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;影響很大</td>
+                    </tr>
+                </table>
+                </div> 
+
+                <div class="question">
+                    <p>5. {{ form.level_guess_increasing_5.label }}</p>
+                    <table>
+                        <tr>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td></td>
+                            {% for label in form.level_guess_increasing_5.choices %}
+                                <td style="text-align: center; width: 2.5em; color: gray;">{{ label }}</td>
+                            {% endfor %}
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>不影響&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            {% for radio in form.level_guess_increasing_5 %}
+                                <td style="text-align: center;">{{ radio }}</td>
+                            {% endfor %}
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;影響很大</td>
+                        </tr>
+                    </table>
+                </div> 
+
+                    <div class="question">
+                        <p>6. 其他（請簡要說明您猜測影響組員貢獻量的原因） {{ formfield 'level_guess_increasing_other' }}</p>
+                    </div>
+
+<br><br><br>
+
+	<button class="otree-btn-next btn btn-primary">下一頁</button>
+
+
+<script>
+$(document).bind("contextmenu copy selectstart", function(){
+    return false;
+});
+</script>
+
+<script>
+	setTimeout(function(){document.querySelector('.otree-btn-next').className+= ' twinkle'}, 60000);
+</script>
+
+<style type="text/css">
+        .twinkle{
+            color: #fff;
+            border: #0d6efd;
+            animation: twinkle 1s alternate infinite;
+        }
+        @keyframes twinkle{
+			from{background: #0d6efd;}
+            to{background: #0d6dfd4f;}
+        }	
+</style>
+{{ endblock }}

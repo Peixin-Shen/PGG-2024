@@ -77,6 +77,14 @@ td{
             <td>第二個<br>決策項目的報酬</td>
             <td>${{pgg_payoff}}</td>
         </tr>
+        
+        {{ if player.participant.questionnaire_guess_other }}
+        <tr>
+            <td>第二階段問卷的報酬</td>
+            <td>$ {{ pgg_questionnaire_payoff }}</td>
+        </tr>
+        {{ endif }}
+
         <tr class="pgg">
             <td>隱私授權的報酬</td>
             <td>${{player.mpl_payoff}}</td>

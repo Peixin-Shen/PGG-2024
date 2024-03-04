@@ -90,10 +90,14 @@ def creating_session(subsession:Subsession):
 class Screen1(Page):
     form_model = 'player'
     form_fields = ['mpl_0', 'mpl_10', 'mpl_20', 'mpl_30', 'mpl_40', 'mpl_50', 'mpl_60', 'mpl_70', 'mpl_80', 'mpl_90', 'mpl_100']
-    
 
     @staticmethod
+    def error_message(player, values):
+        print('values is', values)
+        if None in list(values.values()):
+            return '每一個價格都需選擇同意或不同意授權'
     
+    @staticmethod
     def before_next_page(player, timeout_happened):
         Constants.mpl_dict[0] = player.mpl_0
         Constants.mpl_dict[10] = player.mpl_10
@@ -135,12 +139,14 @@ class Screen2(Page):
     def vars_for_template(player: Player):
         if player.participant.pgg_role == "A":
             return {
-                "pgg_payoff": math.ceil(player.participant.payoff - player.mpl_payoff - 50),
+                "pgg_questionnaire_payoff": player.participant.pgg_questionnaire_payoff,
+                "pgg_payoff": math.ceil(player.participant.payoff - player.mpl_payoff - player.participant.pgg_questionnaire_payoff - 50),
                 "total_payoff": math.ceil(player.participant.payoff)
                 }
         else:
             return {
-                "pgg_payoff": math.ceil(player.participant.payoff - 50),
+                "pgg_questionnaire_payoff": player.participant.pgg_questionnaire_payoff,
+                "pgg_payoff": math.ceil(player.participant.payoff - player.participant.pgg_questionnaire_payoff - 50),
                 "total_payoff": math.ceil(player.participant.payoff)
             }
 
@@ -204,13 +210,15 @@ class Screen4(Page):
 
         if player.participant.pgg_role == "A":
             return {
-                "pgg_payoff": math.ceil(player.participant.payoff - player.mpl_payoff - 50 - check_payoff),
+                "pgg_questionnaire_payoff": player.participant.pgg_questionnaire_payoff,
+                "pgg_payoff": math.ceil(player.participant.payoff - player.mpl_payoff - player.participant.pgg_questionnaire_payoff - 50 - check_payoff),
                 "total_payoff": math.ceil(player.participant.payoff),
                 "pgg_id": player.participant.pgg_id,
             }
         else:
             return {
-                "pgg_payoff": math.ceil(player.participant.payoff - 50 - check_payoff),
+                "pgg_questionnaire_payoff": player.participant.pgg_questionnaire_payoff,
+                "pgg_payoff": math.ceil(player.participant.payoff - player.participant.pgg_questionnaire_payoff - 50 - check_payoff),
                 "total_payoff": math.ceil(player.participant.payoff),
                 "pgg_id": player.participant.pgg_id,
             }
