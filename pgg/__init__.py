@@ -349,7 +349,7 @@ def check_info_format(info_id, submit_ans):
         
     # 生日
     elif info_id == "q14":
-        error_message = "請以「斜線」分隔收縮壓和舒張壓"
+        error_message = "請以「斜線」分隔月和日"
         try:
             month, day = submit_ans.split("/")
         except:

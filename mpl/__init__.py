@@ -20,7 +20,7 @@ class Constants(BaseConstants):
 
     password = "T@ssEl864"
     wrong_password = "T@ssEl468"
-    meet_link = "https://reurl.cc/jkrOl2"
+    meet_link = "https://ntucc.webex.com/meet/klchang"
 
 class Subsession(BaseSubsession):
     pass
@@ -59,7 +59,7 @@ class Player(BasePlayer):
 def creating_session(subsession:Subsession):
     subsession.group_randomly()
     for p in subsession.get_players():
-        p.check = random.randint(0,1) #1
+        p.check = 1 #暫時改掉 random.randint(0,1)/1
         p.link = Constants.meet_link
 
 # # 若「甲」同意授權，將他的個資另外存成 json 檔

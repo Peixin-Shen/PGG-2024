@@ -1,6 +1,6 @@
 from otree.api import *
 import random, json
-import numpy
+
 
 from otree.models import player
 
@@ -15,7 +15,7 @@ class Constants(BaseConstants):
     ''' oTree 基本設定 '''
     name_in_url = 'PGG_decision'
     players_per_group = 4
-    num_rounds = 3 # 暫時改掉 10/3
+    num_rounds = 10 # 暫時改掉 10/3
 
     '''PGG 參數'''
     multiplier = 2
@@ -363,7 +363,10 @@ def is_decreasing(data):
 class questionnaire_1(Page):
     form_model = 'player'
     form_fields = ['level_increasing_1', 'level_increasing_2', 'level_increasing_3', 'level_increasing_4', 'level_increasing_5', 'level_increasing_other']
-        
+    
+    timeout_seconds = 300 # 暫時改掉 300/120
+    timer_text = '請盡速作答，倒數計時 5 分鐘仍未作答，系統將自動跳到下一頁：'
+
     @staticmethod
     def is_displayed(player: Player):
         all_contribution = eval(player.participant.all_contribution)
@@ -371,11 +374,24 @@ class questionnaire_1(Page):
             return True
         else:
             return False
+    
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        if timeout_happened:
+            player.level_increasing_1 = 99
+            player.level_increasing_2 = 99
+            player.level_increasing_3 = 99
+            player.level_increasing_4 = 99
+            player.level_increasing_5 = 99
+
 
 # 第二階段 - 影響貢獻量原因問卷（減少）    
 class questionnaire_2(Page):
     form_model = 'player'
     form_fields = ['level_decreasing_1', 'level_decreasing_2', 'level_decreasing_3', 'level_decreasing_4', 'level_decreasing_5', 'level_decreasing_other']
+
+    timeout_seconds = 300 # 暫時改掉 300/120
+    timer_text = '請盡速作答，倒數計時 5 分鐘仍未作答，系統將自動跳到下一頁：'
 
     @staticmethod
     def is_displayed(player: Player):
@@ -384,11 +400,23 @@ class questionnaire_2(Page):
             return True
         else:
             return False
+    
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        if timeout_happened:
+            player.level_decreasing_1 = 99
+            player.level_decreasing_2 = 99
+            player.level_decreasing_3 = 99
+            player.level_decreasing_4 = 99
+            player.level_decreasing_5 = 99
 
 # 第二階段 - 影響貢獻量原因問卷（不變）
 class questionnaire_3(Page):
     form_model = 'player'
     form_fields = ['level_unchanging_1', 'level_unchanging_2', 'level_unchanging_3', 'level_unchanging_4', 'level_unchanging_5', 'level_unchanging_other']
+
+    timeout_seconds = 300 # 暫時改掉 300/120
+    timer_text = '請盡速作答，倒數計時 5 分鐘仍未作答，系統將自動跳到下一頁：'
 
     @staticmethod
     def is_displayed(player: Player):
@@ -397,6 +425,15 @@ class questionnaire_3(Page):
             return True
         else:
             return False
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        if timeout_happened:
+            player.level_unchanging_1 = 99
+            player.level_unchanging_2 = 99
+            player.level_unchanging_3 = 99
+            player.level_unchanging_4 = 99
+            player.level_unchanging_5 = 99
+    
 
 def record_member_questionnaire_data(group: Group):
     players = group.get_players()
@@ -467,7 +504,10 @@ def myround(val):
 class questionnaire_4(Page):
     form_model = 'player'
     form_fields = ['level_guess_increasing_1', 'level_guess_increasing_2', 'level_guess_increasing_3', 'level_guess_increasing_4', 'level_guess_increasing_5', 'level_guess_increasing_other']
-        
+    
+    timeout_seconds = 300 # 暫時改掉 300/120
+    timer_text = '請盡速作答，倒數計時 5 分鐘仍未作答，系統將自動跳到下一頁：'
+
     @staticmethod
     def is_displayed(player: Player):
 
@@ -478,27 +518,39 @@ class questionnaire_4(Page):
     
     @staticmethod
     def before_next_page(player: Player, timeout_happened):
+
+        if timeout_happened:
+            player.level_guess_increasing_1 = 99
+            player.level_guess_increasing_2 = 99
+            player.level_guess_increasing_3 = 99
+            player.level_guess_increasing_4 = 99
+            player.level_guess_increasing_5 = 99
+        
         correct_count = 0
         data = eval(player.other_increasing_dict)
-        if player.level_guess_increasing_1 == myround(numpy.mean(data['1'])):
+        if player.level_guess_increasing_1 == myround(sum(data['1'])/len(data['1'])):
             correct_count += 1
-        if player.level_guess_increasing_2 == myround(numpy.mean(data['2'])):
+        if player.level_guess_increasing_2 == myround(sum(data['2'])/len(data['2'])):
             correct_count += 1
-        if player.level_guess_increasing_3 == myround(numpy.mean(data['3'])):
+        if player.level_guess_increasing_3 == myround(sum(data['3'])/len(data['3'])):
             correct_count += 1
-        if player.level_guess_increasing_4 == myround(numpy.mean(data['4'])):
+        if player.level_guess_increasing_4 == myround(sum(data['4'])/len(data['4'])):
             correct_count += 1
-        if player.level_guess_increasing_5 == myround(numpy.mean(data['5'])):
+        if player.level_guess_increasing_5 == myround(sum(data['5'])/len(data['5'])):
             correct_count += 1
 
         player.participant.pgg_questionnaire_payoff += 5*correct_count
+    
 
 
 # 第二階段 - 猜測影響組員貢獻量的原因問卷（減少）
 class questionnaire_5(Page):
     form_model = 'player'
     form_fields = ['level_guess_decreasing_1', 'level_guess_decreasing_2', 'level_guess_decreasing_3', 'level_guess_decreasing_4', 'level_guess_decreasing_5', 'level_guess_decreasing_other']
-        
+    
+    timeout_seconds = 300 # 暫時改掉 300/120
+    timer_text = '請盡速作答，倒數計時 5 分鐘仍未作答，系統將自動跳到下一頁：'
+
     @staticmethod
     def is_displayed(player: Player):
         if player.round_number == Constants.num_rounds and player.other_decreasing == True:
@@ -508,18 +560,25 @@ class questionnaire_5(Page):
     
     @staticmethod
     def before_next_page(player: Player, timeout_happened):
+
+        if timeout_happened:
+            player.level_guess_decreasing_1 = 99
+            player.level_guess_decreasing_2 = 99
+            player.level_guess_decreasing_3 = 99
+            player.level_guess_decreasing_4 = 99
+            player.level_guess_decreasing_5 = 99
+
         correct_count = 0
         data = eval(player.other_decreasing_dict)
-
-        if player.level_guess_decreasing_1 == myround(numpy.mean(data['1'])):
+        if player.level_guess_decreasing_1 == myround(sum(data['1'])/len(data['1'])):
             correct_count += 1
-        if player.level_guess_decreasing_2 == myround(numpy.mean(data['2'])):
+        if player.level_guess_decreasing_2 == myround(sum(data['2'])/len(data['2'])):
             correct_count += 1
-        if player.level_guess_decreasing_3 == myround(numpy.mean(data['3'])):
+        if player.level_guess_decreasing_3 == myround(sum(data['3'])/len(data['3'])):
             correct_count += 1
-        if player.level_guess_decreasing_4 == myround(numpy.mean(data['4'])):
+        if player.level_guess_decreasing_4 == myround(sum(data['4'])/len(data['4'])):
             correct_count += 1
-        if player.level_guess_decreasing_5 == myround(numpy.mean(data['5'])):
+        if player.level_guess_decreasing_5 == myround(sum(data['5'])/len(data['5'])):
             correct_count += 1
 
         player.participant.pgg_questionnaire_payoff += 5*correct_count

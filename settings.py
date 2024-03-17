@@ -16,7 +16,7 @@ SESSION_CONFIGS = [
     #     num_demo_participants=16,
     #     pgg_role='A',
     #     id_treatment='id_sys',
-    #     contri_treatment='own_info',
+    #     contri_treatment='own_info',F
     # ),
 
     dict(
@@ -57,27 +57,29 @@ SESSION_CONFIGS = [
 
     dict(
         name='test',
-        app_sequence=['check_in', 'mpl'],
+        app_sequence=['check_in', 'pgg', 'mpl'],
         num_demo_participants=4,
         pgg_role='A',
+        id_treatment='id_user',
+        contri_treatment='own_info',
     ),
 ]
 
 ROOMS = [
 
     dict(
-        name='A_userID_money',
-        display_name='A_money'
+        name='room_1',
+        display_name='room_1'
     ),
 
     dict(
-        name='A_userID_ownInfo',
-        display_name='A_info'
+        name='room_2',
+        display_name='room_2'
     ),
 
     dict(
-        name='B_userID_otherInfo',
-        display_name='B_info'
+        name='room_3',
+        display_name='room_3'
     ),
 
 ]
