@@ -123,7 +123,8 @@ td{
     <div class="hidden-area">
         {{ formfields }}
     </div>
-填寫完畢後，請點擊「下一頁」繼續本實驗。<br><br>
+    填寫完畢後，請點擊「下一頁」繼續本實驗。<br><br>
+    <div style="display: none;" id="info_nums_error" class="otree-form-errors alert alert-danger error">每一個價格都需選擇同意或不同意授權。</div>
 	<button class="otree-btn-next btn btn-primary">下一頁</button>
 
 <script>
@@ -143,7 +144,7 @@ var next_btn = document.querySelector('.otree-btn-next');
         var mpl_90 = $('input[name="mpl_90"]:checked').val()
         var mpl_100 = $('input[name="mpl_100"]:checked').val()
         if (mpl_0 == null || mpl_10 == null || mpl_20 == null || mpl_30 == null || mpl_40 == null || mpl_50 == null || mpl_60 == null || mpl_70 == null || mpl_80 == null || mpl_90 == null || mpl_100 == null) {
-            alert("每一個價格都需選擇同意或不同意授權")
+            $('.error').show()
             return false;
         }
 	};

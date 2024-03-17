@@ -9,7 +9,9 @@
 
 {{ block content }}
 
+
 <style>
+
 	.notshow {
 		margin: 0.5rem;
 		line-height: 2rem;
@@ -25,7 +27,7 @@
 		transition-duration: 0.15s;
 	}
 
-	.show {
+	li.show {
 		background-color: #82d8d2;
 		margin: 0.5rem;
 		line-height: 2rem;
@@ -137,6 +139,7 @@
 
 
 
+
 	{{ if player.pgg_role == 'A' }}
 		<p>
 			請將選填的 {{ Constants.num_quest }} 項資料填入問題後方的空格。完成 {{ Constants.num_quest_need }} 項資料後，您可自第一個決策項目獲得 {{ Constants.a_role_payoff }} 元。
@@ -167,8 +170,40 @@
 		<ol id="B_list"></ol>
 	{{ endif }}
 
+	
+	
+
 	完成20項個資後，請點擊「下一頁」繼續本實驗。<br><br>
-	<button class="otree-btn-next btn btn-primary">下一頁</button>
+	<div style="display: none;" id="info_nums_error" class="otree-form-errors alert alert-danger error"></div>
+	<button id="first_next_btn" class="otree-btn-next btn btn-primary">下一頁</button>
+
+	
+
+
+<!-- 隱藏 20 項個資確認視窗的觸發按紐 -->
+<button style="display: none;" type="button" id="check_20info_button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+	Personal Information List
+  </button>
+  
+  <!-- 填完 20 項個資的確認視窗 -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		<!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+		  <h6 class="modal-title" id="exampleModalLabel"><b>請確實核對您的資料，確保填寫正確。<br>在下一頁您將沒有任何機會修改資料。<br>若驗證時發現錯誤，您在此決策項⽬獲得的報酬將全數歸零。</b></h6>
+		</div>
+		<div style="white-space: pre-line" id="info_list" class="modal-body"></div>
+		<div class="modal-footer">
+			<button class="otree-btn-next btn btn-primary">是，資料正確</button>
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+		  
+		</div>
+	  </div>
+	</div>
+  </div>
+
+
 
 <!-- 點擊後顯示填寫框的效果 -->
 <script>
@@ -192,6 +227,7 @@ list.addEventListener('click', function(ev) {
 
 <!-- 動態建立「甲」、「乙」的填寫表 -->
 <script>
+
 for (const [no_info, value] of Object.entries(js_vars)) {
 
 	// 加上項目文字
@@ -391,7 +427,9 @@ var task_intervall = setInterval(
 
 <script>
 // 當受試者點擊 next button，檢查填寫項目是否已達要求。
-var next_btn = document.querySelector('.otree-btn-next');
+
+// var next_btn = document.querySelector('.otree-btn-next');
+var next_btn = document.getElementById('first_next_btn');
 next_btn.onclick = function(){
 	var counter = 0;
 	var num_q = 0
@@ -404,27 +442,33 @@ next_btn.onclick = function(){
 		}
 	}
 
+	var info_list = document.getElementById("info_list").textContent = check_info;
+
 	if (counter < {{ Constants.num_quest_need }}) {
-		alert("您目前填寫了 " + counter + " 項資料，請填寫 {{ Constants.num_quest_need }} 項資料。");
+		var error_msg = "您目前填寫了 " + counter + " 項資料，請填寫 {{ Constants.num_quest_need }} 項資料。"
+		document.getElementById("info_nums_error").textContent = error_msg
+		$('.error').show()
 		return false;
 	}
 	else if (counter > {{ Constants.num_quest_need }}){
-		alert("您目前填寫了 " + counter + " 項資料，請刪減至 {{ Constants.num_quest_need }} 項資料。");
+		var error_msg = "您目前填寫了 " + counter + " 項資料，請刪減至 {{ Constants.num_quest_need }} 項資料。"
+		document.getElementById("info_nums_error").textContent = error_msg
+		$('.error').show()
 		return false;
 	}
 	else {
-		// return true;
-		var confirmResult = confirm("請確實核對您的資料，確保填寫正確。在下一頁您將沒有任何機會修改資料。若驗證時發現錯誤，您在此決策項⽬獲得的報酬將全數歸零。" + check_info);
-		// confirm原話為：請確定您填寫的資料是否正確？
-		// 如果確認結果為 true，繼續；否則，取消操作
-		return confirmResult;
+		$('.error').hide()
+		document.getElementById("check_20info_button").click();
+		return false
 	}
 };
+
 </script>
 
 <script>
 	setTimeout(function(){document.querySelector('.otree-btn-next').className+= ' twinkle'}, 60000);
 </script>
+
 
 <style type="text/css">
         .twinkle{
