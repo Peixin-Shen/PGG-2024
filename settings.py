@@ -90,10 +90,13 @@ ROOMS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=1.00, participation_fee=50, doc="",
+    real_world_currency_per_point=1.00, participation_fee=50, 
     pgg_role=str(),
     id_treatment=str(),
     contri_treatment=str(),
+    subjects = 8,
+    doc="請點開 Configure session，將 subjects 更改為該場次實際招募到的人數。",
+
 )
 
 PARTICIPANT_FIELDS = dict(

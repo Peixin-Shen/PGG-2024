@@ -55,8 +55,8 @@ class Constants(BaseConstants):
     width = '850px'
     height = 1.7
 
-    password = "T@ssEl864"
-    wrong_password = "T@ssEl468"
+    password = "T@ssEL864"
+    wrong_password = "T@ssEL468"
     meet_link = "https://reurl.cc/jkrOl2"
 
 class Subsession(BaseSubsession):

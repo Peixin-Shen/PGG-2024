@@ -438,7 +438,7 @@ next_btn.onclick = function(){
 		num_q += 1;
 		if (document.getElementById(key + 'ans').textContent != '') {
 			counter += 1;
-			check_info +=  "\n" + num_q + "."+ value['info'] + ": " + document.getElementById(key + 'ans').textContent;
+			check_info += num_q + ". "+ value['info'] + ": " + document.getElementById(key + 'ans').textContent + "\n";
 		}
 	}
 

@@ -18,12 +18,17 @@ class Constants(BaseConstants):
     width = '850px'
     height = 1.7
 
-    password = "T@ssEl864"
-    wrong_password = "T@ssEl468"
+    password = "T@ssEL864"
+    wrong_password = "T@ssEL468"
     meet_link = "https://ntucc.webex.com/meet/klchang"
 
+
 class Subsession(BaseSubsession):
-    pass
+    def get_num_of_subjects(self):
+        return self.session.config['subjects']
+    def get_num_participants(self):
+        return self.session.num_participants
+
 
 
 class Group(BaseGroup):
@@ -58,9 +63,30 @@ class Player(BasePlayer):
 
 def creating_session(subsession:Subsession):
     subsession.group_randomly()
+
+    num_subjects = subsession.get_num_of_subjects()
+    if num_subjects%2 != 0: # 招募到的受試者是奇數
+        num_subjects += 1
+    random_lst = [0, 1]*int(num_subjects/2)
+    random.shuffle(random_lst)
+
+    num_participants = subsession.get_num_participants()
+    remaining_lst = [0,1]*int((num_participants - num_subjects)/2)
+
+    random.shuffle(remaining_lst)
+    random_lst = random_lst + remaining_lst
+
+    count = 0
     for p in subsession.get_players():
-        p.check = 1 #暫時改掉 random.randint(0,1)/1
         p.link = Constants.meet_link
+        try:
+            p.check = random_lst[count]
+            count += 1
+        except:
+            print('random_method: error occured')
+            p.check = random.randint(0,1) 
+        # p.check = 1 #暫時改掉
+        
 
 # # 若「甲」同意授權，將他的個資另外存成 json 檔
 # def save_info_if_agree(player: Player):
